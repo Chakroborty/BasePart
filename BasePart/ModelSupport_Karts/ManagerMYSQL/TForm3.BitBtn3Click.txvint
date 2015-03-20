@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="s91cq00a50192epon_v">
+    <property name="$metaclass" value="Interaction Diagram" />
+    <property name="$name" value="TForm3.BitBtn3Click" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn3Click(System.TObject)" />
+    <property name="@ViewType" value="Sequence" />
+    <reference referencedUin="design:node:::wsr7xq0od011bfp7j_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="20,20,59,282" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::h9quccw2e01w65uch_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="location_set_by_user" value="True" />
+      <property name="seq_bounds" value="220,20,93,282" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::wrx8r9ayf01tgvksj_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="24,58,10,194" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::tz1puavmg01bl0zek_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="41,58,10,194" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:link:::yh0poavmg01ijx3qr_l">
+      <property name="$shortcutReference" value="true" />
+      <property name="@ChainNumber" value="1" />
+      <property name="seq_sourceAnchor" value="54,78" />
+      <property name="seq_targetAnchor" value="261,78" />
+      <property name="seq_bendpoints" value="" />
+    </reference>
+    <reference referencedUin="design:node:::or2hcsc7k01qsvgsl_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,20,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::h6ubhkmok017a1u1k_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,49,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::pqd0hvxvk01vndpir_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,78,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::njakpvxvk0164m1rr_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,107,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::w0u740lzk01j4ab4t_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,136,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::3t1wh0lzk01333eyt_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="seq_bounds" value="5,165,10,15" />
+      <property name="seq_bounds_setted_by_user" value="False" />
+    </reference>
+    <reference referencedUin="design:node:::wrx8r9ayf01tgvksj_n" />
+    <reference referencedUin="design:node:::tz1puavmg01bl0zek_n" />
+    <reference referencedUin="design:link:::yh0poavmg01ijx3qr_l">
+      <property name="@ChainNumber" value="1" />
+    </reference>
+    <reference referencedUin="design:node:::or2hcsc7k01qsvgsl_n" />
+    <reference referencedUin="design:node:::h6ubhkmok017a1u1k_n" />
+    <reference referencedUin="design:node:::pqd0hvxvk01vndpir_n" />
+    <reference referencedUin="design:node:::njakpvxvk0164m1rr_n" />
+    <reference referencedUin="design:node:::w0u740lzk01j4ab4t_n" />
+    <reference referencedUin="design:node:::3t1wh0lzk01333eyt_n" />
+  </view>
+  <link uin="jq61aabdd014q1t0t_l">
+    <property name="$metaclass" value="Interaction Container Link" />
+    <property name="$name" value="Error loading resource RegistrationClass.INTERACTION_CONTAINER_LINK1" />
+    <participant referencedUin="design:view:::s91cq00a50192epon_v" role="Client" />
+    <participant referencedUin="design:node:::30lq0opzc01ghwtjm_n" role="Supplier" />
+  </link>
+</nodeSet>

@@ -1,0 +1,27 @@
+Поле
+ImKey
+Класс
+Функ. назн.
+Наименование
+Value
+Tolerance
+Power/Voltage
+Полн. наим.
+Темп. хр. пов.
+Темп. раб. пов.
+Темп. раб. пон.
+Темп. хр. пон.
+Footprint Ref
+Footprint Path
+Library Ref
+Library Path
+Type
+PCADSymbol
+PCADPattern
+PCADLibrary
+Номер КРР
+TU/GOST
+HelpURL
+ТЭО
+Замечание
+МОП

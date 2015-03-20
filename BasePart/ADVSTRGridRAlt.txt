@@ -1,0 +1,16 @@
+Поле
+ImKey
+Класс
+Наименование
+Value
+Tolerance
+Power/Voltage
+Footprint Ref
+Footprint Path
+Library Ref
+Library Path
+Type
+PCADSymbol
+PCADPattern
+PCADLibrary
+

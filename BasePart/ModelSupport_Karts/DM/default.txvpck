@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="oodm2tk6qv49ye2eh_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:Karts:DM.TDataModule2">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,220,610" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.OpenDialog1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.DataSource3" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.ADOTable3" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.DataSource2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.dsStrana1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.ADOTable1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.ADOConnection1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.MySQLqry" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.KRRSource" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.KRRtable" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.KRRSource2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Subtqry1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.DataSource4" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.SpiskiTable" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Subtqry2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Subtqry3" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Subtqry4" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Subtqry5" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Firmds1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Firmds2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.dsStrana2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Strantbl1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Firmtbl1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.ADOTable2" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.DataSource1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Datatbl" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Taotbl" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.SHetds" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.TAOds" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.PartRec" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.PCADrec" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.Altiumrec" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.TexData" />
+      <reference referencedUin="delphi:e_method:src:Karts:DM.TDataModule2.InsertRec(System.string,System.string,System.string,System.Boolean)" />
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.PartRec">
+        <property name="sourceAnchor" value="230,598" />
+        <property name="targetAnchor" value="249,598" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.PCADrec">
+        <property name="sourceAnchor" value="230,99" />
+        <property name="targetAnchor" value="249,99" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.Altiumrec">
+        <property name="sourceAnchor" value="230,486" />
+        <property name="targetAnchor" value="249,486" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.TexData">
+        <property name="sourceAnchor" value="230,294" />
+        <property name="targetAnchor" value="249,294" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.BaseTexData" />
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.BaseTexData">
+        <property name="sourceAnchor" value="230,286" />
+        <property name="targetAnchor" value="249,286" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:DM.PCADData">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="249,1,154,188" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idSymb" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idPatern" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idLib" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idComp" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idPCADpart" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.idPCADLiBparts" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.PCADData.Status" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:DM.Datasheet">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="249,208,131,173" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.idDatasheet" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.idPartDtsh" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.Path" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.SubPath" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.DSHFile" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.DshStatus" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:DM.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.@unitclass.DataModule2" />
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.@unitclass.DataModule2" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:DM.ALTIUMData">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="249,400,130,173" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.idFootprRef" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.idFootPath" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.idLibRef" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.idLibPath" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.idComp" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.ALTIUMData.Status" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:DM.RecordData">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="249,592,168,338" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPSubtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPart" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idCADkomponents" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPerson" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idData" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPoNTD" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPatPoNTD" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPic3D" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idCARDS" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.ObshNTD" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idFirmsIz" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idFirmsRaz" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.PicJ" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.SubTipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.SubTipe1" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.Klass" />
+    </reference>
+  </view>
+</nodeSet>

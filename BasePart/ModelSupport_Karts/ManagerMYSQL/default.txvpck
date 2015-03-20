@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="x6ae3xmm95qeu6o4q_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.PAttrValue">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,200,147,36" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TAttrValue">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,260,125,188" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.idPtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.idPSubtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.ObshNTD" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.PicJ" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.SubTipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.SubTipe1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.Klass" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="320,1,279,1885" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.PopupMenu1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ImBase1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Altium1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.MySQLds" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.N1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ADOConnection2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ALTqry" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.N2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.N3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Imbase2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.N4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ImBase3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.btn1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn6" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn7" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Button1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvPageControl1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht7" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht5" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht6" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advtbsht8" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.GroupBox1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.GroupBox2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit5" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.grp2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label7" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox7" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.grp1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label6" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.dblkcbbFirmNAME" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.btn3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.KategoryTree1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.lbl3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Button2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid13" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.chk1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.lbl2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.lbl1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid6" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid12" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid9" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid8" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid10" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid11" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.advstr2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Button3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.btn2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.btn4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Edit6" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.chklst1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label5" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.mmo1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn5" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn8" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Memo1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.chk2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label4" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label8" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Image1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.btn5" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label9" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Image2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label10" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn9" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.FormShow(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.ImBase1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Altium1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Imbase2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.N3Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.N4Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.ImBase3Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox1CloseUp(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn6Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.btn1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.KategoryTree1GetText(VirtualTrees.TBaseVirtualTree,VirtualTrees.TVirtualNode*,TColumnIndex,VirtualTrees.TVSTTextType,ref@System.string)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.btn2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.btn4Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.KategoryTree1NodeClick(VirtualTrees.TBaseVirtualTree,VirtualTrees.THitInfo)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn3Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn8Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn4Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn5Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.FormClose(System.TObject,ref@System.UITypes.TCloseAction)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.AdvStringGrid12ClickCell(System.TObject,System.Integer,System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox2CloseUp(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.chklst1ClickCheck(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn7Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.dblkcbbFirmNAMEClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.DBLookupComboBox7Click(System.TObject)" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.datalook" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.TAOlook" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Datlbl" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.TAOlbl" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label11" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.Label12" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn9Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.PocData(System.string,System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.CadComp(AdvGrid.TAdvStringGrid,AdvGrid.TAdvStringGrid)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Form3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Lst" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.TableId" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.RecordKey" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.I" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.j" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.m" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.UCol" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.URow" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ImBase" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.InDatBase" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.PicJPG" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Result" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.jp" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.value" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Rvalue" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Rfiled" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.Tresult" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.TBLrec" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.CATALOGrec" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.KeyList" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.STR" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.TableOUT" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.TableIN" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.TreData" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.RootNode" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ChildNode" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ChildNode1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ChildNode2" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ChildNode3" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.ChildNode4" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.@unitclass.GridClear(AdvGrid.TAdvStringGrid,System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.@unitclass.CheckImbaseConnection()" />
+      <reference referencedUin="delphi:l_ast:src:Karts:ManagerMYSQL.@unitclass.Form3" />
+      <reference referencedUin="delphi:l_ast:src:Karts:ManagerMYSQL.@unitclass.TreData" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.RecordData">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="700,360,168,248" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idPtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idPSubtipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idPart" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idFirms" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idCADkomponents" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.idPic3D" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.ObshNTD" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.PicJ" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.SubTipe" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.SubTipe1" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.RecordData.Klass" />
+    </reference>
+    <reference referencedUin="design:view:::uh2nkutmaxo_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,20,198,42" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:view:::orv4g05vu2l_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,80,214,42" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:view:::p5vpwuzfsqj_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,140,206,42" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:view:::4it6xcx17ygpzw2do_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="637,1,133,42" />
+    </reference>
+    <reference referencedUin="design:view:::oirxtt78h4p34pebq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="637,62,148,42" />
+    </reference>
+    <reference referencedUin="design:view:::rpacyber5ntsfpuel_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="637,123,148,42" />
+    </reference>
+  </view>
+</nodeSet>

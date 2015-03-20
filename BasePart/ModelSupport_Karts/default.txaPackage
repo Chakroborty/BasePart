@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <node uin="lssllypcxv4g3ntmm_n">
+    <property name="$metaclass" value="Interaction Container" />
+    <property name="$name" value="Interaction container1" />
+    <node uin="02age5ze2261xl4pk_n">
+      <property name="$description" value="{ TODO : Вставка КРР по НТД Data в Mysql }" />
+      <property name="$metaclass" value="Object" />
+      <property name="$name" value="Object1" />
+      <property name="Alias" value="{ TODO : Вставка КРР по НТД Data в Mysql }" />
+      <link uin="s3lpml2nckklnlmzo_l">
+        <property name="$metaclass" value="Association Link" />
+        <property name="$name" value="Association Link1" />
+        <property name="@link" value="aggregation" />
+        <participant referencedUin="design:node:::02age5ze2261xl4pk_n:lssllypcxv4g3ntmm_n" role="Client" />
+        <participant referencedUin="design:node:::ftzj3jhybkk011xer_n:lssllypcxv4g3ntmm_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="ftzj3jhybkk011xer_n">
+      <property name="$metaclass" value="Object" />
+      <property name="$name" value="Object2" />
+      <property name="@url" value=" Вставка Part по НТД Data в Mysql " />
+      <property name="Alias" value=" Вставка Part по НТД Data в Mysql " />
+    </node>
+  </node>
+  <node uin="g90l74orsfabhb40m_n">
+    <property name="$description" value="End Obrabotka datashet" />
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Obrabotka datashet" />
+    <link uin="deemstv9rvt_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::g90l74orsfabhb40m_n" role="Client" />
+      <participant referencedUin="design:node:::mxddxh1tr3tf9i0ts_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="mxddxh1tr3tf9i0ts_n">
+    <property name="$metaclass" value="Decision" />
+    <property name="$name" value="DataModule2.MySQLqry.RecordCount=0" />
+    <property name="property1" value="DataModule2.MySQLqry.RecordCount=0" />
+    <link uin="sqw7um05ovh_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::mxddxh1tr3tf9i0ts_n" role="Client" />
+      <participant referencedUin="design:node:::y55bom0ioln_n" role="Supplier" />
+    </link>
+    <link uin="fjonfq60hho_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition2" />
+      <participant referencedUin="design:node:::mxddxh1tr3tf9i0ts_n" role="Client" />
+    </link>
+    <link uin="tv2ryjh9ej_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition3" />
+      <participant referencedUin="design:node:::mxddxh1tr3tf9i0ts_n" role="Client" />
+      <participant referencedUin="design:node:::x351w7r679tf8ioke_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="y55bom0ioln_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="INSERT datashet." />
+    <link uin="7mlbn0l1wv51hdfbt_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::y55bom0ioln_n" role="Client" />
+      <participant referencedUin="design:node:::o7xa720c4s203h0it_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="yojz4tw69zdsz0xvk_n">
+    <property name="$metaclass" value="Start State" />
+    <property name="$name" value="Start State1" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn3Click(System.TObject)" />
+    <link uin="04xgfcbrzehumwn4p_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::yojz4tw69zdsz0xvk_n" role="Client" />
+      <participant referencedUin="design:node:::g90l74orsfabhb40m_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="g7ncc0cmoikfa0uo_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note1" />
+    <property name="$note_text" value="BitBtn3Click" />
+    <link uin="0124linfmoitaxhpj_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::yojz4tw69zdsz0xvk_n" role="Client" />
+      <participant referencedUin="design:node:::g7ncc0cmoikfa0uo_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="x351w7r679tf8ioke_n">
+    <property name="$metaclass" value="State" />
+    <property name="$name" value="Analiz datashet." />
+    <node uin="1sapo0tg3blah7rag_n">
+      <property name="$metaclass" value="Decision" />
+      <property name="$name" value="Decision1" />
+      <link uin="x0vv6iuz1yl6ijx8q_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::1sapo0tg3blah7rag_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::9glrnd7w1ylqe1zus_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+      <link uin="sa9hj4gbtgg_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition2" />
+        <participant referencedUin="design:node:::1sapo0tg3blah7rag_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::v9n9otzp9qj_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+      <link uin="y82len02z2g_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition3" />
+        <participant referencedUin="design:node:::1sapo0tg3blah7rag_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::lq1pr2zfjxq_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+      <link uin="oi8zen03tpi_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition4" />
+        <participant referencedUin="design:node:::1sapo0tg3blah7rag_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::mhj28hb22wr_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="9glrnd7w1ylqe1zus_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Otkrit zareg datashet." />
+      <link uin="psj0fx0qjmt_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::9glrnd7w1ylqe1zus_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::mhj28hb22wr_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="v9n9otzp9qj_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Pereimenovat i zareg datashet." />
+      <link uin="hrthiqtft0j_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::v9n9otzp9qj_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::mhj28hb22wr_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="lq1pr2zfjxq_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Otkrit novi datashet." />
+      <link uin="nzr66m5kc8r_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::lq1pr2zfjxq_n:x351w7r679tf8ioke_n" role="Client" />
+        <participant referencedUin="design:node:::mhj28hb22wr_n:x351w7r679tf8ioke_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="mhj28hb22wr_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Vixod" />
+    </node>
+    <link uin="euo7s2ewrv3z6qr4g_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition5" />
+      <participant referencedUin="design:node:::x351w7r679tf8ioke_n" role="Client" />
+      <participant referencedUin="design:node:::o7xa720c4s203h0it_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="o7xa720c4s203h0it_n">
+    <property name="$metaclass" value="End State" />
+    <property name="$name" value="End State1" />
+  </node>
+</nodeSet>

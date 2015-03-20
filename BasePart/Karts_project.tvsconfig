@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<TgConfig Version="3" SubLevelDisabled="False">
+  <Option Name="namespaceFolder.ManagerMYSQL" Type="System.String" Value="ManagerMYSQL" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.ImBase_TLB" Type="System.String" Value="ImBase_TLB" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Import" Type="System.String" Value="Import" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Karts" Type="System.String" Value="Karts" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.DM" Type="System.String" Value="DM" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Unit1" Type="System.String" Value="Unit1" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.ImportAlt" Type="System.String" Value="ImportAlt" Category="General" IsBrowsable="False" />
+  <Option Name="SDR.ExcludeSelfMessages" Type="System.Boolean" Value="True" Category="Sequence Diagram Roundtrip" SubCategory="Generate Sequence Diagram" />
+  <Option Name="SDR.ExcludePropertyAccessors" Type="System.Boolean" Value="True" Category="Sequence Diagram Roundtrip" SubCategory="Generate Sequence Diagram" />
+  <Option Name="SDR.CreateHyperlink" Type="System.Boolean" Value="True" Category="Sequence Diagram Roundtrip" SubCategory="Generate Sequence Diagram" />
+  <Option Name="SDR.ExcludeRepeatedMessagesMode" Type="Borland.Together.OpenAPI3.Config.ERMsMode" Value="ToObjectsOfAClass" Category="Sequence Diagram Roundtrip" SubCategory="Generate Sequence Diagram" />
+</TgConfig>

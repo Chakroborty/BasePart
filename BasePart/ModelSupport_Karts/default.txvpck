@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="90odpvd81rq_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::mennp5hzz44sszcho_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,165,1743" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseTables" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.OMPSync" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFieldDefs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseBlobsDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldInfoDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFolderDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFilterService" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFolders" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldsInfoDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseCatalogDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFieldsInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseUtils" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseBlobs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseRawTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseDataSet" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTableInfoDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseKey" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseApplication" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImBaseLoadStatus" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseTables" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRecord" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseApplication" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldDef" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseQueryDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseDatabase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseRecord" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseTableInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFieldDef" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImDataBase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFieldInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IOMPSyncDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ISearchImporterDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseDatabase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseDataSet" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFolder" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseCatalogs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTablesDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseUtils" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFilterServiceDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseTableInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFieldDefs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseKey" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFieldDef" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseTables" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseUtils" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFolder" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImDataType" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTableInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseDatabase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseApplicationDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFieldDef" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseField" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseCatalogs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFields" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseCatalog" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImKeyError" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseRecords" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseCatalogs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRecords" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoOMPSync" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImLocateOptions" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImBlobType" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRawTableDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldsInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseBlobs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFoldersDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImDataBase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRecordsDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFields" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseCatalog" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseUtils" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImFieldKind" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseKeyDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldDefs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseCatalog" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImDataBaseDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseDataSet" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldDefsDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseCatalogs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldDefDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseField" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TOMPSync" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseRecord" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseDataSet" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImEnterMode" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseRecords" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTableDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldsDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseApplicationEvents" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFieldDefs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ISearchImporter" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TSearchImporter" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseRecord" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseApplication" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseTableInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImDataTypeEx" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseBlobs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseRecords" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFields" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.SearchImporter" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFieldInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseKey" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImDataBase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseApplication" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseRawTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseFolders" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseDatabaseDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRawTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseRawTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IOMPSync" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseField" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImCatalogTypes" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseCatalog" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImFindObject" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFieldsInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFields" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseUtilsDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFolders" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFolders" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFieldInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseTables" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImDataBase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFieldInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseField" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImDateTime" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseFolder" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImFileAtt" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseRecordDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseFieldsInfo" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.TImbaseFolder" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseKey" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseDatabase" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoImbaseBlobs" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.CoSearchImporter" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImbaseStatus" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseDataSetDisp" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.ImDataSetState" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImBase_TLB.IImbaseCatalogsDisp" />
+    </reference>
+    <reference referencedUin="design:view:::q3m2bdnw7u4f5be1k_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,1,105,151" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImportAlt.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:ImportAlt.TForm4" />
+    </reference>
+    <reference referencedUin="design:view:::cuaywyypyaq_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.PAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TAttrValue" />
+    </reference>
+    <reference referencedUin="design:view:::3j4kdijleu40zorzg_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,171,133,151" />
+      <reference referencedUin="delphi:e_class:src:Karts:RedDataKRR.TRedaktorDataKRR" />
+      <reference referencedUin="delphi:e_class:src:Karts:RedDataKRR.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::zjuhq4z0nu41l8uip_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,639,100,181" />
+      <reference referencedUin="delphi:e_class:src:Karts:Unit1.TAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:Unit1.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:Unit1.PAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:Unit1.TForm1" />
+      <reference referencedUin="delphi:e_class:src:Karts:Unit1.DATAuser" />
+    </reference>
+    <reference referencedUin="design:view:::025nsyyxyu4adrmpr_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,839,100,151" />
+      <reference referencedUin="delphi:e_class:src:Karts:Import.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:Import.TForm2" />
+    </reference>
+    <reference referencedUin="design:view:::9sqjn4jjcv4ghx2ak_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,1009,131,258" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.ESQLiteException" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.TSQliteParam" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.THookQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.TSQLiteQuery" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.TSQLiteUniTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.TSQLiteTable" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.TSQLiteDatabase" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLiteTable3.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::hj2bcdinjv48gmeno_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="346,1,228,211" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteBusyHandlerCallback" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteBackup" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteDB" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TCollateXCompare" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteExecCallback" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLite3Destructor" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteStmt" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TPAnsiCharArray" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.TSQLiteResult" />
+      <reference referencedUin="delphi:e_class:src:Karts:SQLite3.PPAnsiCharArray" />
+    </reference>
+    <reference referencedUin="design:view:::oodm2tk6qv49ye2eh_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="220,400,200,220" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.TDataModule2" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.TAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.RecordData" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.PCADData" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.ALTIUMData" />
+    </reference>
+    <reference referencedUin="design:view:::40mnvhnzc0k_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,1286,100,134" />
+      <reference referencedUin="delphi:e_class:src:Karts:Karts.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::2suz9okt1w40b3i0t_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="194,1742,114,151" />
+      <reference referencedUin="delphi:e_class:src:Karts:Auzorithed.TForm5" />
+      <reference referencedUin="delphi:e_class:src:Karts:Auzorithed.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::x6ae3xmm95qeu6o4q_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="320,1500,147,280" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.PAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TAttrValue" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3" />
+      <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.RecordData" />
+      <reference referencedUin="design:view:::p5vpwuzfsqj_v" />
+      <reference referencedUin="design:view:::uh2nkutmaxo_v" />
+      <reference referencedUin="design:view:::orv4g05vu2l_v" />
+      <reference referencedUin="design:view:::4it6xcx17ygpzw2do_v" />
+      <reference referencedUin="design:view:::oirxtt78h4p34pebq_v" />
+      <reference referencedUin="design:view:::rpacyber5ntsfpuel_v" />
+      <reference referencedUin="design:view:::s91cq00a50192epon_v" />
+    </reference>
+    <reference referencedUin="design:view:::k2ppmlpynegyphq1q_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::88afp8buazo1l05tp_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>
