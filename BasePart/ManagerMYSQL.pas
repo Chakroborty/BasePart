@@ -112,6 +112,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ImBase1Click(Sender: TObject);
+    /// <url>element://model:project::Karts/design:node:::n0ybkw4bgl_n:vaaru2e8eq_n</url>
     procedure Altium1Click(Sender: TObject);
     procedure Imbase2Click(Sender: TObject);
     procedure N3Click(Sender: TObject);
@@ -120,15 +121,18 @@ type
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    /// <url>element://model:project::Karts/design:node:::vaaru2e8eq_n</url>
     procedure Button2Click(Sender: TObject);
     procedure KategoryTree1GetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
     procedure btn2Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
+    /// <url>element://model:project::Karts/design:node:::ovy90uy3d9fl65nlf_n</url>
     procedure Button1Click(Sender: TObject);
     procedure KategoryTree1NodeClick(Sender: TBaseVirtualTree;
       const HitInfo: THitInfo);
     /// <url>element://model:project::Karts/design:view:::s91cq00a50192epon_v</url>
+    /// <url>element://model:project::Karts/design:node:::g90l74orsfabhb40m_n</url>
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn8Click(Sender: TObject);
@@ -458,9 +462,10 @@ procedure TForm3.BitBtn3Click(Sender: TObject);
  begin
               { TODO -cData : Obrabotka datashet. }
          Edit4.Text := DataModule2.OpenDialog1.FileName;
-         DataModule2.TexData.Path := DataModule2.OpenDialog1.FileName;
-         DataModule2.TexData.DSHFile := DataModule2.TexData.Path.Remove(0,LastDelimiter('\',DataModule2.TexData.Path));//Pos('//',Edit4.Text),Length(Edit4.Text));
-			 //**************** Начало нового блока************
+         DataModule2.TexData.Path:= DataModule2.OpenDialog1.FileName;
+         DataModule2.TexData.DSHFile := DataModule2.TexData.Path.Remove(0,LastDelimiter('\',DataModule2.TexData.Path));
+
+         //**************** Начало нового блока************
 			DataModule2.MySQLqry.Active:= False;
       DataModule2.MySQLqry.SQL.Clear;
 
@@ -470,15 +475,14 @@ procedure TForm3.BitBtn3Click(Sender: TObject);
       if DataModule2.MySQLqry.RecordCount=0 then
       begin
                   { TODO -cData : INSERT datashet. }
-
-           DataModule2.TexData.SubPath := DataModule2.TexData.Path.Remove(LastDelimiter('\',DataModule2.TexData.Path),DataModule2.TexData.Path.Length);
-           DataModule2.TexData.SubPath := DataModule2.TexData.Path.Remove(LastDelimiter('\',DataModule2.TexData.Path),DataModule2.TexData.Path.Length)
+         DataModule2.TexData.SubPath := DataModule2.TexData.Path.Remove(LastDelimiter('\',DataModule2.TexData.Path),DataModule2.TexData.Path.Length);
+         DataModule2.TexData.SubPath := DataModule2.TexData.SubPath.Remove(0,Pos('Радиоэлементы',DataModule2.TexData.SubPath)+12);
 
           //**************** Начало нового блока************
           SQLsel:= 'SELECT * FROM Datashets WHERE DatashetName = "'+DataModule2.TexData.DSHFile+'";';
           SQLins:= 'INSERT INTO Datashets (DatashetName,DatashetPath,DatashetSubPath,Person_idPerson,Data_tame) Value ("'+
           DataModule2.TexData.DSHFile+'","'+DataModule2.TexData.Path+'","'+DataModule2.TexData.SubPath+'","'+
-            DataModule2.PartRec.idPerson+'",NOW());';
+            DataModule2.PartRec.idPerson.ToString+'",NOW());';
           DataModule2.TexData.idDatasheet :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLib',True);
           //**************** Конец нового блока************
 
@@ -821,8 +825,24 @@ end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 begin
+      DataModule2.TexData.DshStatus := False;
       BitBtn1Click(Sender);
       Altium1Click(Sender);
+       { TODO : Obrabotka Datashet ImBase }
+                  if not AdvStringGrid4.Cells[1,4].IsEmpty then
+        begin
+           DataModule2.TexData.Path:=  AdvStringGrid4.Cells[1,6] ;
+           DataModule2.TexData.SubPath := DataModule2.TexData.Path.Remove(LastDelimiter('\',DataModule2.TexData.Path),DataModule2.TexData.Path.Length);
+           DataModule2.TexData.SubPath := DataModule2.TexData.SubPath.Remove(0,Pos('Радиоэлементы',DataModule2.TexData.SubPath)+12);
+           DataModule2.TexData.DSHFile := DataModule2.TexData.Path.Remove(0,LastDelimiter('\',DataModule2.TexData.Path));
+           DataModule2.TexData.DshStatus := True;
+
+        end
+        else
+        begin
+
+        end;
+
       KategoryTree1.Clear;
       RootNode := KategoryTree1.AddChild(nil);
       TreData := KategoryTree1.GetNodeData(RootNode);

@@ -26,7 +26,8 @@
   <node uin="g90l74orsfabhb40m_n">
     <property name="$description" value="End Obrabotka datashet" />
     <property name="$metaclass" value="Activity" />
-    <property name="$name" value="Obrabotka datashet" />
+    <property name="$name" value="Obrabotka нового datashet" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn3Click(System.TObject)" />
     <link uin="deemstv9rvt_l">
       <property name="$metaclass" value="Transition" />
       <property name="$name" value="Transition1" />
@@ -69,22 +70,26 @@
   <node uin="yojz4tw69zdsz0xvk_n">
     <property name="$metaclass" value="Start State" />
     <property name="$name" value="Start State1" />
-    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn3Click(System.TObject)" />
-    <link uin="04xgfcbrzehumwn4p_l">
+    <link uin="1dgjvnuuvf13v08gq_l">
       <property name="$metaclass" value="Transition" />
       <property name="$name" value="Transition1" />
       <participant referencedUin="design:node:::yojz4tw69zdsz0xvk_n" role="Client" />
-      <participant referencedUin="design:node:::g90l74orsfabhb40m_n" role="Supplier" />
+    </link>
+    <link uin="4tq6aitewjl_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition2" />
+      <participant referencedUin="design:node:::yojz4tw69zdsz0xvk_n" role="Client" />
+      <participant referencedUin="design:node:::vaaru2e8eq_n" role="Supplier" />
     </link>
   </node>
   <node uin="g7ncc0cmoikfa0uo_n">
     <property name="$metaclass" value="Note" />
     <property name="$name" value="Note1" />
     <property name="$note_text" value="BitBtn3Click" />
-    <link uin="0124linfmoitaxhpj_l">
+    <link uin="w2wlkv4zeyi_l">
       <property name="$metaclass" value="Note Link" />
       <property name="$name" value="Note Link1" />
-      <participant referencedUin="design:node:::yojz4tw69zdsz0xvk_n" role="Client" />
+      <participant referencedUin="design:node:::g90l74orsfabhb40m_n" role="Client" />
       <participant referencedUin="design:node:::g7ncc0cmoikfa0uo_n" role="Supplier" />
     </link>
   </node>
@@ -163,5 +168,47 @@
   <node uin="o7xa720c4s203h0it_n">
     <property name="$metaclass" value="End State" />
     <property name="$name" value="End State1" />
+  </node>
+  <node uin="vaaru2e8eq_n">
+    <property name="$metaclass" value="State" />
+    <property name="$name" value="Извлечь данные" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Button2Click(System.TObject)" />
+    <node uin="ovy90uy3d9fl65nlf_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Данные ImBase" />
+      <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Button1Click(System.TObject)" />
+      <link uin="zgsgm1gkqzj_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::ovy90uy3d9fl65nlf_n:vaaru2e8eq_n" role="Client" />
+        <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="n0ybkw4bgl_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Данные Altium" />
+      <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Altium1Click(System.TObject)" />
+    </node>
+    <node uin="0ku2i45ld0n_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Обработка Datashet ImBase" />
+      <link uin="g6qb5y8f90i_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Client" />
+        <participant referencedUin="design:node:::n0ybkw4bgl_n:vaaru2e8eq_n" role="Supplier" />
+      </link>
+    </node>
+  </node>
+  <node uin="kwe9pi0n21f_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Obrabotka Datashet ImBase" />
+    <link uin="4fugntf2cpk_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Client" />
+      <participant referencedUin="design:node:::kwe9pi0n21f_n" role="Supplier" />
+    </link>
   </node>
 </nodeSet>

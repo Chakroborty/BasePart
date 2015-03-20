@@ -23,7 +23,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="320,1,279,1885" />
+      <property name="bounds" value="320,1,279,1915" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn1" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.PopupMenu1" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ImBase1" />
@@ -145,6 +145,8 @@
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn9Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.PocData(System.string,System.string,System.string)" />
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.CadComp(AdvGrid.TAdvStringGrid,AdvGrid.TAdvStringGrid)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.PCADComp(AdvGrid.TAdvStringGrid)" />
+      <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.AltiumComp(AdvGrid.TAdvStringGrid)" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.@unitclass">
       <property name="$shortcutReference" value="true" />
@@ -183,6 +185,8 @@
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.@unitclass.CheckImbaseConnection()" />
       <reference referencedUin="delphi:l_ast:src:Karts:ManagerMYSQL.@unitclass.Form3" />
       <reference referencedUin="delphi:l_ast:src:Karts:ManagerMYSQL.@unitclass.TreData" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.SQLsel" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.@unitclass.SQLins" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.RecordData">
       <property name="$shortcutReference" value="true" />
@@ -226,6 +230,10 @@
     <reference referencedUin="design:view:::rpacyber5ntsfpuel_v">
       <property name="$shortcutReference" value="true" />
       <property name="bounds" value="637,123,148,42" />
+    </reference>
+    <reference referencedUin="design:view:::s91cq00a50192epon_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,133,42" />
     </reference>
   </view>
 </nodeSet>

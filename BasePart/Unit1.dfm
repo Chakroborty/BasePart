@@ -416,8 +416,8 @@ object Form1: TForm1
     end
   end
   object MainMenu1: TMainMenu
-    Left = 16
-    Top = 24
+    Left = 112
+    Top = 40
     object N1: TMenuItem
       Caption = #1060#1072#1081#1083
       object N2: TMenuItem
@@ -454,8 +454,8 @@ object Form1: TForm1
     DOMVendorDesc = 'MSXML'
   end
   object pm1: TPopupMenu
-    Left = 328
-    Top = 32
+    Left = 224
+    Top = 40
     object N9: TMenuItem
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1076#1072#1085#1085#1099#1077
       OnClick = N9Click
