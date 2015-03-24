@@ -191,11 +191,21 @@
     </node>
     <node uin="0ku2i45ld0n_n">
       <property name="$metaclass" value="Activity" />
-      <property name="$name" value="Обработка Datashet ImBase" />
-      <link uin="g6qb5y8f90i_l">
+      <property name="$name" value="Obrabotka Datashet ImBase" />
+      <link uin="790gomzu6k4u3xlvk_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition2" />
+        <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Client" />
+        <participant referencedUin="design:node:::7pis26j05k4ha11di_n:vaaru2e8eq_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="7pis26j05k4ha11di_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Obrabotka TAO ImBase" />
+      <link uin="cw99ddnd54a63zrpm_l">
         <property name="$metaclass" value="Transition" />
         <property name="$name" value="Transition1" />
-        <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Client" />
+        <participant referencedUin="design:node:::7pis26j05k4ha11di_n:vaaru2e8eq_n" role="Client" />
         <participant referencedUin="design:node:::n0ybkw4bgl_n:vaaru2e8eq_n" role="Supplier" />
       </link>
     </node>
@@ -209,6 +219,33 @@
       <property name="$name" value="Note Link1" />
       <participant referencedUin="design:node:::0ku2i45ld0n_n:vaaru2e8eq_n" role="Client" />
       <participant referencedUin="design:node:::kwe9pi0n21f_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="i58c0gg1png9nehxt_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Tre clik" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.KategoryTree1NodeClick(VirtualTrees.TBaseVirtualTree,VirtualTrees.THitInfo)" />
+  </node>
+  <node uin="990msxh3m2j76m15t_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note3" />
+    <property name="$note_text" value="извлечь  пути из datashet  из MySQL" />
+    <link uin="eyusk03sm2jmqg8dh_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::i58c0gg1png9nehxt_n" role="Client" />
+      <participant referencedUin="design:node:::990msxh3m2j76m15t_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="1s20b7b87ig8d6uup_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note4" />
+    <property name="$note_text" value="Обработка ТЭО  ImBase" />
+    <link uin="8q0u4bza7ig29s57m_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::7pis26j05k4ha11di_n:vaaru2e8eq_n" role="Client" />
+      <participant referencedUin="design:node:::1s20b7b87ig8d6uup_n" role="Supplier" />
     </link>
   </node>
 </nodeSet>

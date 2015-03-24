@@ -30,7 +30,7 @@ end;
       type
 Datasheet = record
 idDatasheet,idPartDtsh: Integer;
-Path,SubPath,DSHFile : string;
+Path,SubPath,DSHFile,Folder : string;
 
 DshStatus : Boolean;
 end;
@@ -71,7 +71,7 @@ type
      PartRec:RecordData;
      PCADrec:PCADData;
      Altiumrec:ALTIUMData;
-     TexData,BaseTexData:Datasheet;
+     TexData,BaseTexData,TAOData,BaseTAOData:Datasheet;
    function InsertRec(Sel,Ins,Column:string; Wstavka:Boolean):Integer;
     { Public declarations }
   end;

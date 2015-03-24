@@ -14,7 +14,7 @@ uses
 PAttrValue = ^TAttrValue;
 TAttrValue = record
 idPtipe,idPSubtipe,ObshNTD,PicJ: Integer;
-SubTipe,SubTipe1,Klass: string;
+SubTipe,SubTipe1,Klass,Subpath: string;
 end;
 
 
@@ -129,8 +129,8 @@ type
     procedure btn4Click(Sender: TObject);
     /// <url>element://model:project::Karts/design:node:::ovy90uy3d9fl65nlf_n</url>
     procedure Button1Click(Sender: TObject);
-    procedure KategoryTree1NodeClick(Sender: TBaseVirtualTree;
-      const HitInfo: THitInfo);
+    /// <url>element://model:project::Karts/design:node:::i58c0gg1png9nehxt_n</url>
+    procedure KategoryTree1NodeClick(Sender: TBaseVirtualTree; const HitInfo: THitInfo);
     /// <url>element://model:project::Karts/design:view:::s91cq00a50192epon_v</url>
     /// <url>element://model:project::Karts/design:node:::g90l74orsfabhb40m_n</url>
     procedure BitBtn3Click(Sender: TObject);
@@ -210,6 +210,13 @@ begin
     ALTqry.SQL.Add(STR);
     ALTqry.Active := true;
     ALTqry.ExecSQL;
+
+        if ALTqry.RecordCount=0 then
+    begin
+      Exit;//  Осуществляет выход из функции или процедуры
+    end;
+
+
     Form4.AdvStringGrid1.Cells[1,1] := ALTqry.FieldByName('ImKey').Value;
 
     Form4.AdvStringGrid1.Cells[1,2] := ALTqry.FieldByName('Type').Value;
@@ -825,23 +832,71 @@ end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 begin
+      DataModule2.BaseTexData.DshStatus := False;
+      DataModule2.BaseTAOData.DshStatus := False;
       DataModule2.TexData.DshStatus := False;
+      DataModule2.TAOData.DshStatus := False;
       BitBtn1Click(Sender);
       Altium1Click(Sender);
-       { TODO : Obrabotka Datashet ImBase }
-                  if not AdvStringGrid4.Cells[1,4].IsEmpty then
-        begin
-           DataModule2.TexData.Path:=  AdvStringGrid4.Cells[1,6] ;
-           DataModule2.TexData.SubPath := DataModule2.TexData.Path.Remove(LastDelimiter('\',DataModule2.TexData.Path),DataModule2.TexData.Path.Length);
-           DataModule2.TexData.SubPath := DataModule2.TexData.SubPath.Remove(0,Pos('Радиоэлементы',DataModule2.TexData.SubPath)+12);
-           DataModule2.TexData.DSHFile := DataModule2.TexData.Path.Remove(0,LastDelimiter('\',DataModule2.TexData.Path));
-           DataModule2.TexData.DshStatus := True;
+       { TODO -cData : Obrabotka Datashet ImBase }
+              if not AdvStringGrid4.Cells[1,6].IsEmpty then
+    begin
+                  if Pos('Радиоэлементы',AdvStringGrid4.Cells[1,6])<>0 then
+       begin
 
-        end
-        else
-        begin
+          DataModule2.BaseTexData.Path:=  AdvStringGrid4.Cells[1,6] ;
+          DataModule2.BaseTexData.SubPath := DataModule2.BaseTexData.Path.Remove(LastDelimiter('\',DataModule2.BaseTexData.Path),DataModule2.BaseTexData.Path.Length);
+          DataModule2.BaseTexData.SubPath := DataModule2.BaseTexData.SubPath.Remove(0,Pos('Радиоэлементы',DataModule2.BaseTexData.SubPath)+12);
+          DataModule2.BaseTexData.Folder := DataModule2.BaseTexData.Path.Remove(Pos('Радиоэлементы',DataModule2.BaseTexData.Path)+12,DataModule2.BaseTexData.Path.Length);
+          DataModule2.BaseTexData.DSHFile := DataModule2.BaseTexData.Path.Remove(0,LastDelimiter('\',DataModule2.BaseTexData.Path));
+          Edit5.Text := DataModule2.BaseTexData.DSHFile ;
+          Edit3.Text := DataModule2.BaseTexData.SubPath;
+          Edit4.Text := DataModule2.BaseTexData.Path;
+          DataModule2.BaseTexData.DshStatus := True;
 
-        end;
+       end
+       else
+       begin
+          DataModule2.BaseTexData.DshStatus := False;
+
+       end;
+
+    end
+    else
+    begin
+      DataModule2.BaseTexData.DshStatus := False;
+    end;
+
+           { TODO -cData : Obrabotka TAO ImBase }
+              if not AdvStringGrid4.Cells[1,7].IsEmpty then
+    begin
+                  if Pos('ТЭО',AdvStringGrid4.Cells[1,7])<>0 then
+       begin
+
+          DataModule2.BaseTAOData.Path:=  AdvStringGrid4.Cells[1,7] ;
+          DataModule2.BaseTAOData.SubPath := DataModule2.BaseTAOData.Path.Remove(LastDelimiter('\',DataModule2.BaseTAOData.Path),DataModule2.BaseTAOData.Path.Length);
+          DataModule2.BaseTAOData.SubPath := DataModule2.BaseTAOData.SubPath.Remove(0,Pos('ТЭО',DataModule2.BaseTAOData.SubPath)+2);
+          DataModule2.BaseTAOData.Folder := DataModule2.BaseTAOData.Path.Remove(Pos('ТЭО',DataModule2.BaseTAOData.Path)+2,DataModule2.BaseTAOData.Path.Length);
+          DataModule2.BaseTAOData.DSHFile := DataModule2.BaseTAOData.Path.Remove(0,LastDelimiter('\',DataModule2.BaseTAOData.Path));
+          Edit5.Text := DataModule2.BaseTAOData.DSHFile ;
+          Edit3.Text := DataModule2.BaseTAOData.SubPath;
+          Edit4.Text := DataModule2.BaseTAOData.Path;
+          DataModule2.BaseTAOData.DshStatus := True;
+
+       end
+       else
+       begin
+          DataModule2.BaseTAOData.DshStatus := False;
+
+       end;
+
+    end
+    else
+    begin
+      DataModule2.BaseTAOData.DshStatus := False;
+    end;
+
+
 
       KategoryTree1.Clear;
       RootNode := KategoryTree1.AddChild(nil);

@@ -64,6 +64,8 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartSubType` (
   `ObshNTD` INT(11) NULL,
   `ALLPIC3D` BLOB NULL,
   `ALLPIC3DName` VARCHAR(100) NULL,
+  `DatashetPath` VARCHAR(512) NULL,
+  `DatashetSubPath` VARCHAR(512) NULL,
   PRIMARY KEY (`idPartSubTipe`),
   CONSTRAINT `fk_PartSubTipe_PartTipe1`
     FOREIGN KEY (`PartType_idPartType`)
@@ -170,18 +172,16 @@ CREATE UNIQUE INDEX `EdiniciName_UNIQUE` ON `ERIparameters`.`Edinici` (`EdiniciN
 
 
 -- -----------------------------------------------------
--- Table `ERIparameters`.`PCADSymbols`
+-- Table `ERIparameters`.`PCADLib`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADSymbols` (
-  `idSymbols` INT NOT NULL AUTO_INCREMENT,
-  `Symbol` VARCHAR(45) NULL,
-  `SymbolsPIC` BLOB NULL,
-  PRIMARY KEY (`idSymbols`))
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADLib` (
+  `idPCADLib` INT NOT NULL AUTO_INCREMENT,
+  `PCADLibName` VARCHAR(100) NULL,
+  `PCADpart_idPCADpart` INT NOT NULL,
+  PRIMARY KEY (`idPCADLib`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `idSymbols_UNIQUE` ON `ERIparameters`.`PCADSymbols` (`idSymbols` ASC);
-
-CREATE UNIQUE INDEX `Symbol_UNIQUE` ON `ERIparameters`.`PCADSymbols` (`Symbol` ASC);
+CREATE UNIQUE INDEX `idPCADLib_UNIQUE` ON `ERIparameters`.`PCADLib` (`idPCADLib` ASC);
 
 
 -- -----------------------------------------------------
@@ -207,10 +207,16 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADPattern` (
   `IPCPattern_idIPCPattern` INT NOT NULL,
   `PatternName` VARCHAR(254) NULL,
   `Pattern3D` BLOB NULL,
+  `PCADLib_idPCADLib` INT NOT NULL,
   PRIMARY KEY (`idPattern`),
   CONSTRAINT `fk_Pattern_IPCPattern1`
     FOREIGN KEY (`IPCPattern_idIPCPattern`)
     REFERENCES `ERIparameters`.`IPCPattern` (`idIPCPattern`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PCADPattern_PCADLib1`
+    FOREIGN KEY (`PCADLib_idPCADLib`)
+    REFERENCES `ERIparameters`.`PCADLib` (`idPCADLib`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -221,45 +227,30 @@ CREATE UNIQUE INDEX `PatternName_UNIQUE` ON `ERIparameters`.`PCADPattern` (`Patt
 
 CREATE INDEX `fk_Pattern_IPCPattern1_idx` ON `ERIparameters`.`PCADPattern` (`IPCPattern_idIPCPattern` ASC);
 
+CREATE INDEX `fk_PCADPattern_PCADLib1_idx` ON `ERIparameters`.`PCADPattern` (`PCADLib_idPCADLib` ASC);
+
 
 -- -----------------------------------------------------
--- Table `ERIparameters`.`PCADpart`
+-- Table `ERIparameters`.`PCADSymbols`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADpart` (
-  `idPCADpart` INT NOT NULL AUTO_INCREMENT,
-  `PCADSymbols_idSymbols` INT NOT NULL,
-  `PCADpart` VARCHAR(100) NULL,
-  `PCADPattern_idPattern` INT NOT NULL,
-  PRIMARY KEY (`idPCADpart`),
-  CONSTRAINT `fk_PCADpart_PCADSymbols1`
-    FOREIGN KEY (`PCADSymbols_idSymbols`)
-    REFERENCES `ERIparameters`.`PCADSymbols` (`idSymbols`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_PCADpart_PCADPattern1`
-    FOREIGN KEY (`PCADPattern_idPattern`)
-    REFERENCES `ERIparameters`.`PCADPattern` (`idPattern`)
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADSymbols` (
+  `idSymbols` INT NOT NULL AUTO_INCREMENT,
+  `Symbol` VARCHAR(45) NULL,
+  `SymbolsPIC` BLOB NULL,
+  `PCADLib_idPCADLib` INT NOT NULL,
+  PRIMARY KEY (`idSymbols`),
+  CONSTRAINT `fk_PCADSymbols_PCADLib1`
+    FOREIGN KEY (`PCADLib_idPCADLib`)
+    REFERENCES `ERIparameters`.`PCADLib` (`idPCADLib`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `idtable1_UNIQUE` ON `ERIparameters`.`PCADpart` (`idPCADpart` ASC);
+CREATE UNIQUE INDEX `idSymbols_UNIQUE` ON `ERIparameters`.`PCADSymbols` (`idSymbols` ASC);
 
-CREATE INDEX `fk_PCADpart_PCADSymbols1_idx` ON `ERIparameters`.`PCADpart` (`PCADSymbols_idSymbols` ASC);
+CREATE UNIQUE INDEX `Symbol_UNIQUE` ON `ERIparameters`.`PCADSymbols` (`Symbol` ASC);
 
-CREATE INDEX `fk_PCADpart_PCADPattern1_idx` ON `ERIparameters`.`PCADpart` (`PCADPattern_idPattern` ASC);
-
-
--- -----------------------------------------------------
--- Table `ERIparameters`.`PCADLib`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADLib` (
-  `idPCADLib` INT NOT NULL AUTO_INCREMENT,
-  `PCADLibName` VARCHAR(100) NULL,
-  PRIMARY KEY (`idPCADLib`))
-ENGINE = InnoDB;
-
-CREATE UNIQUE INDEX `idPCADLib_UNIQUE` ON `ERIparameters`.`PCADLib` (`idPCADLib` ASC);
+CREATE INDEX `fk_PCADSymbols_PCADLib1_idx` ON `ERIparameters`.`PCADSymbols` (`PCADLib_idPCADLib` ASC);
 
 
 -- -----------------------------------------------------
@@ -267,25 +258,33 @@ CREATE UNIQUE INDEX `idPCADLib_UNIQUE` ON `ERIparameters`.`PCADLib` (`idPCADLib`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADLiBparts` (
   `idPCADLiBparts` INT NOT NULL,
-  `PCADpart_idPCADpart` INT NOT NULL,
   `PCADLib_idPCADLib` INT NOT NULL,
   `PCADLiBpartName` VARCHAR(100) NULL,
+  `PCADPattern_idPattern` INT NOT NULL,
+  `PCADSymbols_idSymbols` INT NOT NULL,
   PRIMARY KEY (`idPCADLiBparts`),
-  CONSTRAINT `fk_PCADLiBparts_PCADpart1`
-    FOREIGN KEY (`PCADpart_idPCADpart`)
-    REFERENCES `ERIparameters`.`PCADpart` (`idPCADpart`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_PCADLiBparts_PCADLib1`
     FOREIGN KEY (`PCADLib_idPCADLib`)
     REFERENCES `ERIparameters`.`PCADLib` (`idPCADLib`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PCADLiBparts_PCADPattern1`
+    FOREIGN KEY (`PCADPattern_idPattern`)
+    REFERENCES `ERIparameters`.`PCADPattern` (`idPattern`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PCADLiBparts_PCADSymbols1`
+    FOREIGN KEY (`PCADSymbols_idSymbols`)
+    REFERENCES `ERIparameters`.`PCADSymbols` (`idSymbols`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_PCADLiBparts_PCADpart1_idx` ON `ERIparameters`.`PCADLiBparts` (`PCADpart_idPCADpart` ASC);
-
 CREATE INDEX `fk_PCADLiBparts_PCADLib1_idx` ON `ERIparameters`.`PCADLiBparts` (`PCADLib_idPCADLib` ASC);
+
+CREATE INDEX `fk_PCADLiBparts_PCADPattern1_idx` ON `ERIparameters`.`PCADLiBparts` (`PCADPattern_idPattern` ASC);
+
+CREATE INDEX `fk_PCADLiBparts_PCADSymbols1_idx` ON `ERIparameters`.`PCADLiBparts` (`PCADSymbols_idSymbols` ASC);
 
 
 -- -----------------------------------------------------
@@ -293,7 +292,7 @@ CREATE INDEX `fk_PCADLiBparts_PCADLib1_idx` ON `ERIparameters`.`PCADLiBparts` (`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`LibPaths` (
   `idLibPath` INT NOT NULL,
-  `LibPath` VARCHAR(100) NULL,
+  `LibPath` VARCHAR(256) NULL,
   PRIMARY KEY (`idLibPath`))
 ENGINE = InnoDB;
 
@@ -303,7 +302,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`LibRefs` (
   `idLibRef` INT NOT NULL AUTO_INCREMENT,
-  `LibRef` VARCHAR(45) NULL,
+  `LibRef` VARCHAR(256) NULL,
   `LibPaths_idLibPath` INT NOT NULL,
   PRIMARY KEY (`idLibRef`),
   CONSTRAINT `fk_LibRefs_LibPaths1`
@@ -323,7 +322,7 @@ CREATE INDEX `fk_LibRefs_LibPaths1_idx` ON `ERIparameters`.`LibRefs` (`LibPaths_
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`FootprPaths` (
   `idFootprPath` INT NOT NULL,
-  `FootprPath` VARCHAR(100) NULL,
+  `FootprPath` VARCHAR(256) NULL,
   PRIMARY KEY (`idFootprPath`))
 ENGINE = InnoDB;
 
@@ -333,9 +332,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`FootprRefs` (
   `idFootprRef` INT NOT NULL AUTO_INCREMENT,
-  `FootprRef` VARCHAR(45) NULL,
+  `FootprRef` VARCHAR(256) NULL,
   `FootprPaths_idFootprPath` INT NOT NULL,
-  `IPCPattern_idIPCPattern` INT NOT NULL,
+  `IPCPattern_idIPCPattern` INT NULL,
   PRIMARY KEY (`idFootprRef`),
   CONSTRAINT `fk_FootprRefs_FootprPaths1`
     FOREIGN KEY (`FootprPaths_idFootprPath`)
@@ -377,8 +376,8 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`AltiumParts` (
   `idAltiumPart` INT NOT NULL AUTO_INCREMENT,
   `LibRefs_idLibRef` INT NOT NULL,
   `FootprRefs_idFootprRef` INT NOT NULL,
-  `Dblib_idDblib` INT NOT NULL,
-  `AltiumPar` VARCHAR(100) NULL,
+  `Dblib_idDblib` INT NULL,
+  `AltiumPart` VARCHAR(256) NULL,
   PRIMARY KEY (`idAltiumPart`),
   CONSTRAINT `fk_AltiumParts_LibRefs1`
     FOREIGN KEY (`LibRefs_idLibRef`)
@@ -486,7 +485,7 @@ CREATE INDEX `fk_Person_UserStatus1_idx` ON `ERIparameters`.`Person` (`UserStatu
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`CADkomponents` (
   `idCADkomponents` INT NOT NULL AUTO_INCREMENT,
   `Pic3D_idPic3D` INT NULL,
-  `PCADLiBparts_idPCADLiBparts` INT NOT NULL,
+  `PCADLiBparts_idPCADLiBparts` INT NULL,
   `AltiumParts_idAltiumPart` INT NOT NULL,
   `Person_idPerson` INT NOT NULL,
   `Part Number` VARCHAR(100) NULL,
@@ -569,45 +568,6 @@ CREATE UNIQUE INDEX `idPatents_UNIQUE` ON `ERIparameters`.`Patents` (`idPatents`
 
 
 -- -----------------------------------------------------
--- Table `ERIparameters`.`Datashets`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`Datashets` (
-  `idDatashets` INT NOT NULL AUTO_INCREMENT,
-  `DatashetName` VARCHAR(150) NULL,
-  `DatashetPath` VARCHAR(512) NULL,
-  `DatashetSubPath` VARCHAR(512) NULL,
-  `Person_idPerson` INT NOT NULL,
-  `Data_tame` DATETIME NULL,
-  PRIMARY KEY (`idDatashets`),
-  CONSTRAINT `fk_Datashets_Person1`
-    FOREIGN KEY (`Person_idPerson`)
-    REFERENCES `ERIparameters`.`Person` (`idPerson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_Datashets_Person1_idx` ON `ERIparameters`.`Datashets` (`Person_idPerson` ASC);
-
-
--- -----------------------------------------------------
--- Table `ERIparameters`.`PartsData`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartsData` (
-  `idPartsData` INT NOT NULL,
-  `PartsDataTip` VARCHAR(128) NULL,
-  `Datashets_idDatashets` INT NOT NULL,
-  PRIMARY KEY (`idPartsData`),
-  CONSTRAINT `fk_PartsData_Datashets1`
-    FOREIGN KEY (`Datashets_idDatashets`)
-    REFERENCES `ERIparameters`.`Datashets` (`idDatashets`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_PartsData_Datashets1_idx` ON `ERIparameters`.`PartsData` (`Datashets_idDatashets` ASC);
-
-
--- -----------------------------------------------------
 -- Table `ERIparameters`.`Parts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`Parts` (
@@ -622,7 +582,6 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`Parts` (
   `Perspektiva_idPerspektiva` INT NULL,
   `Person_idPerson` INT NULL,
   `Edinici_idEdinici` INT NULL,
-  `PartsData_idPartsData` INT NULL,
   `PartImKey` VARCHAR(100) NULL,
   `PartName` VARCHAR(250) NULL,
   `PartFULLName` VARCHAR(250) NULL,
@@ -699,11 +658,6 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`Parts` (
     FOREIGN KEY (`Patents_idPatents`)
     REFERENCES `ERIparameters`.`Patents` (`idPatents`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Parts_PartsData1`
-    FOREIGN KEY (`PartsData_idPartsData`)
-    REFERENCES `ERIparameters`.`PartsData` (`idPartsData`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -730,8 +684,6 @@ CREATE INDEX `fk_Parts_Person1_idx` ON `ERIparameters`.`Parts` (`Person_idPerson
 CREATE UNIQUE INDEX `PartName_UNIQUE` ON `ERIparameters`.`Parts` (`PartImKey` ASC);
 
 CREATE INDEX `fk_Parts_Patents1_idx` ON `ERIparameters`.`Parts` (`Patents_idPatents` ASC);
-
-CREATE INDEX `fk_Parts_PartsData1_idx` ON `ERIparameters`.`Parts` (`PartsData_idPartsData` ASC);
 
 
 -- -----------------------------------------------------
@@ -1200,6 +1152,123 @@ CREATE INDEX `fk_ThemsPatents_Patents1_idx` ON `ERIparameters`.`ThemsPatents` (`
 
 
 -- -----------------------------------------------------
+-- Table `ERIparameters`.`Folders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`Folders` (
+  `idFolder` INT NOT NULL AUTO_INCREMENT,
+  `Folder` VARCHAR(512) NULL,
+  PRIMARY KEY (`idFolder`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idFolder_UNIQUE` ON `ERIparameters`.`Folders` (`idFolder` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `ERIparameters`.`TFolders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`TFolders` (
+  `idTFolder` INT NOT NULL AUTO_INCREMENT,
+  `TFolder` VARCHAR(512) NULL,
+  PRIMARY KEY (`idTFolder`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idFolder_UNIQUE` ON `ERIparameters`.`TFolders` (`idTFolder` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `ERIparameters`.`Subpaths`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`Subpaths` (
+  `idSubpaths` INT NOT NULL AUTO_INCREMENT,
+  `Folders_idFolder` INT NOT NULL,
+  `Subpath` VARCHAR(512) NULL,
+  `TFolders_idTFolder` INT NOT NULL,
+  `Priority` INT NULL,
+  PRIMARY KEY (`idSubpaths`),
+  CONSTRAINT `fk_Subpaths_Folders1`
+    FOREIGN KEY (`Folders_idFolder`)
+    REFERENCES `ERIparameters`.`Folders` (`idFolder`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Subpaths_TFolders1`
+    FOREIGN KEY (`TFolders_idTFolder`)
+    REFERENCES `ERIparameters`.`TFolders` (`idTFolder`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idSubpaths_UNIQUE` ON `ERIparameters`.`Subpaths` (`idSubpaths` ASC);
+
+CREATE INDEX `fk_Subpaths_Folders1_idx` ON `ERIparameters`.`Subpaths` (`Folders_idFolder` ASC);
+
+CREATE INDEX `fk_Subpaths_TFolders1_idx` ON `ERIparameters`.`Subpaths` (`TFolders_idTFolder` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `ERIparameters`.`Datashets`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`Datashets` (
+  `idDatashets` INT NOT NULL AUTO_INCREMENT,
+  `DatashetName` VARCHAR(150) NULL,
+  `DatashetPath` VARCHAR(512) NULL,
+  `Folder` VARCHAR(512) NULL,
+  `DatashetSubPath` VARCHAR(512) NULL,
+  `Subpaths_idSubpaths` INT NOT NULL,
+  `Person_idPerson` INT NOT NULL,
+  `Data_tame` DATETIME NULL,
+  PRIMARY KEY (`idDatashets`),
+  CONSTRAINT `fk_Datashets_Person1`
+    FOREIGN KEY (`Person_idPerson`)
+    REFERENCES `ERIparameters`.`Person` (`idPerson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Datashets_Subpaths1`
+    FOREIGN KEY (`Subpaths_idSubpaths`)
+    REFERENCES `ERIparameters`.`Subpaths` (`idSubpaths`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Datashets_Person1_idx` ON `ERIparameters`.`Datashets` (`Person_idPerson` ASC);
+
+CREATE INDEX `fk_Datashets_Subpaths1_idx` ON `ERIparameters`.`Datashets` (`Subpaths_idSubpaths` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `ERIparameters`.`PartsData`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartsData` (
+  `idPartsData` INT NOT NULL,
+  `PartsDataTip` VARCHAR(128) NULL,
+  `Datashets_idDatashets` INT NOT NULL,
+  `Parts_idParts` INT NOT NULL,
+  `PartSubType_idPartSubTipe` INT NOT NULL,
+  PRIMARY KEY (`idPartsData`),
+  CONSTRAINT `fk_PartsData_Datashets1`
+    FOREIGN KEY (`Datashets_idDatashets`)
+    REFERENCES `ERIparameters`.`Datashets` (`idDatashets`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PartsData_Parts1`
+    FOREIGN KEY (`Parts_idParts`)
+    REFERENCES `ERIparameters`.`Parts` (`idParts`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PartsData_PartSubType1`
+    FOREIGN KEY (`PartSubType_idPartSubTipe`)
+    REFERENCES `ERIparameters`.`PartSubType` (`idPartSubTipe`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_PartsData_Datashets1_idx` ON `ERIparameters`.`PartsData` (`Datashets_idDatashets` ASC);
+
+CREATE INDEX `fk_PartsData_Parts1_idx` ON `ERIparameters`.`PartsData` (`Parts_idParts` ASC);
+
+CREATE INDEX `fk_PartsData_PartSubType1_idx` ON `ERIparameters`.`PartsData` (`PartSubType_idPartSubTipe` ASC);
+
+
+-- -----------------------------------------------------
 -- Table `ERIparameters`.`TAO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`TAO` (
@@ -1207,8 +1276,24 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`TAO` (
   `TAOName` VARCHAR(150) NULL,
   `TAOPath` VARCHAR(512) NULL,
   `TAOSubPath` VARCHAR(512) NULL,
-  PRIMARY KEY (`idTAO`))
+  `Person_idPerson` INT NOT NULL,
+  `Subpaths_idSubpaths` INT NOT NULL,
+  PRIMARY KEY (`idTAO`),
+  CONSTRAINT `fk_TAO_Person1`
+    FOREIGN KEY (`Person_idPerson`)
+    REFERENCES `ERIparameters`.`Person` (`idPerson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TAO_Subpaths1`
+    FOREIGN KEY (`Subpaths_idSubpaths`)
+    REFERENCES `ERIparameters`.`Subpaths` (`idSubpaths`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_TAO_Person1_idx` ON `ERIparameters`.`TAO` (`Person_idPerson` ASC);
+
+CREATE INDEX `fk_TAO_Subpaths1_idx` ON `ERIparameters`.`TAO` (`Subpaths_idSubpaths` ASC);
 
 
 -- -----------------------------------------------------
@@ -1220,6 +1305,7 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartsTAO` (
   `TAO_idTAO` INT NOT NULL,
   `PartsTAOName` VARCHAR(256) NULL,
   `PartsTAOcol` VARCHAR(45) NULL,
+  `TAOPriority` INT NULL,
   PRIMARY KEY (`idPartsTAO`),
   CONSTRAINT `fk_PartsTAO_Parts1`
     FOREIGN KEY (`Parts_idParts`)

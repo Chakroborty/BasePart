@@ -220,7 +220,7 @@ object Form3: TForm3
     Top = 265
     Width = 960
     Height = 535
-    ActivePage = advtbsht2
+    ActivePage = advtbsht6
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -1503,11 +1503,12 @@ object Form3: TForm3
         end
         object BitBtn3: TBitBtn
           Left = 695
-          Top = 80
+          Top = 82
           Width = 22
           Height = 22
           Hint = 'Lj,fdbnm yjdsq afqk'
           Caption = '...'
+          Enabled = False
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1

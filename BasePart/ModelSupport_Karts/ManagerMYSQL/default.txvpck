@@ -11,7 +11,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TAttrValue">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="20,260,125,188" />
+      <property name="bounds" value="20,260,125,203" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.idPtipe" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.idPSubtipe" />
@@ -20,6 +20,7 @@
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.SubTipe" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.SubTipe1" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.Klass" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TAttrValue.Subpath" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3">
       <property name="$shortcutReference" value="true" />
