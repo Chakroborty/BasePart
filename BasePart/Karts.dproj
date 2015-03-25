@@ -156,6 +156,7 @@
         <None Include="ModelSupport_Karts\ManagerMYSQL\Sequence Diagram1.txvint"/>
         <None Include="ModelSupport_Karts\ManagerMYSQL\TForm3.BitBtn3Click.txvint"/>
         <None Include="ModelSupport_Karts\Activity Diagram1.txvact"/>
+        <None Include="ModelSupport_Karts\Isert component.txvact"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -392,6 +393,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="ModelSupport_Karts\default.txvpck" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_Karts\Isert component.txvact" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

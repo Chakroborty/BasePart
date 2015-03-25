@@ -228,6 +228,7 @@
       <reference referencedUin="delphi:e_class:src:Karts:DM.RecordData" />
       <reference referencedUin="delphi:e_class:src:Karts:DM.PCADData" />
       <reference referencedUin="delphi:e_class:src:Karts:DM.ALTIUMData" />
+      <reference referencedUin="delphi:e_class:src:Karts:DM.Datasheet" />
     </reference>
     <reference referencedUin="design:view:::40mnvhnzc0k_v">
       <property name="$shortcutReference" value="true" />
@@ -262,6 +263,9 @@
       <property name="$shortcutReference" value="true" />
     </reference>
     <reference referencedUin="design:view:::88afp8buazo1l05tp_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::462x0kfdext_v">
       <property name="$shortcutReference" value="true" />
     </reference>
   </view>

@@ -130,7 +130,8 @@ type
     /// <url>element://model:project::Karts/design:node:::ovy90uy3d9fl65nlf_n</url>
     procedure Button1Click(Sender: TObject);
     /// <url>element://model:project::Karts/design:node:::i58c0gg1png9nehxt_n</url>
-    procedure KategoryTree1NodeClick(Sender: TBaseVirtualTree; const HitInfo: THitInfo);
+    procedure KategoryTree1NodeClick(Sender: TBaseVirtualTree;
+      const HitInfo: THitInfo);
     /// <url>element://model:project::Karts/design:view:::s91cq00a50192epon_v</url>
     /// <url>element://model:project::Karts/design:node:::g90l74orsfabhb40m_n</url>
     procedure BitBtn3Click(Sender: TObject);
@@ -148,6 +149,7 @@ type
     /// <url>element://model:project::Karts/design:view:::u7yts2axrc8a37tpf_v</url>
     /// <url>element://model:project::Karts/design:view:::63q14yq20hih74zht_v</url>
     /// <url>element://model:project::Karts/design:view:::vdh9q11m3dijptpip_v</url>
+    /// <url>element://model:project::Karts/design:node:::dtl96s046mg_n</url>
     procedure BitBtn7Click(Sender: TObject);
     procedure dblkcbbFirmNAMEClick(Sender: TObject);
     procedure DBLookupComboBox7Click(Sender: TObject);
@@ -659,39 +661,27 @@ end;
 
 procedure TForm3.BitBtn7Click(Sender: TObject);
 begin
-      DataModule2.PartRec.idCARDS := DBLookupComboBox1.KeyValue;
-      DataModule2.PartRec.idData := PocData(Edit5.Text,Edit3.Text,Edit4.Text);
 
-      DataModule2.MySQLqry.Active:= False;
-      DataModule2.MySQLqry.SQL.Clear;
+                                 { TODO -cInsert: Вставка записи Part в Mysql }
 
-      DataModule2.MySQLqry.SQL.Text := 'SELECT * FROM Parts WHERE PartImKey = "'
-      +  AdvStringGrid4.Cells[1,1]+'" AND PartFULLName="'+advstr2.Cells[1,13]+'";';//добавить пров. по  PartSubTipe_idPartSubTipe
-      DataModule2.MySQLqry.Open;
 
-      if DataModule2.MySQLqry.RecordCount=0 then
-      begin
-                                        { TODO : Вставка записи Part в Mysql }
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'INSERT INTO Parts (PartSubTipe_idPartSubTipe,PartImKey,PartName,PartFULLName,Person_idPerson,DateTime)	Value ('+
-          DataModule2.PartRec.idPSubtipe.ToString+ ',"'+
-          AdvStringGrid4.Cells[1,1]+'","'+advstr2.Cells[1,9]+'","'+advstr2.Cells[1,13]+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
-          DataModule2.MySQLqry.ExecSQL;
+         //**************** Начало нового блока************
+                  SQLsel:= 'SELECT  * FROM Parts WHERE PartImKey = "'
+                  +  AdvStringGrid4.Cells[1,1]+'" AND PartFULLName="'+advstr2.Cells[1,13]+'";';//добавить пров. по  PartSubTipe_idPartSubTipe
+                  SQLins := 'INSERT INTO Parts (PartSubTipe_idPartSubTipe,PartImKey,PartName,PartFULLName,Person_idPerson,DateTime)	Value ('+
+                  DataModule2.PartRec.idPSubtipe.ToString+ ',"'+
+                  AdvStringGrid4.Cells[1,1]+'","'+advstr2.Cells[1,9]+'","'+advstr2.Cells[1,13]+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
 
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'SELECT LAST_INSERT_ID() as ID;';
-          DataModule2.MySQLqry.Open;
-          DataModule2.PartRec.idPart :=  DataModule2.MySQLqry.FieldByName('ID').AsInteger;
+                  DataModule2.PartRec.idPart :=  DataModule2.InsertRec(SQLsel,SQLins,'idParts',False);
 
-      end
-      else
-      begin
-          DataModule2.PartRec.idPart := DataModule2.MySQLqry.FieldByName('idParts').Value;
+                            if DataModule2.PartRec.idPart<1 then
+                  begin
+                     Exit;
+                  end;
 
-      end;
-                                        { TODO :  Вставка записи Temperature в Mysql }
+         //**************** Конец нового блока************
+
+                             { TODO :  Вставка записи Temperature в Mysql }
           DataModule2.MySQLqry.Active := False;
           DataModule2.MySQLqry.SQL.Clear;
           DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET TplusXR ='+AdvStringGrid13.Cells[1,1]+', TplusRAB='+AdvStringGrid13.Cells[1,2]+
@@ -699,63 +689,31 @@ begin
           DataModule2.PartRec.idPart.ToString()+';';
           DataModule2.MySQLqry.ExecSQL;
           //************************************************************************************
-                                        { TODO : Bctabka Part po NTD Data v Mysql }
 
-			DataModule2.MySQLqry.Active:= False;
-      DataModule2.MySQLqry.SQL.Clear;
-      DataModule2.MySQLqry.SQL.Text:='SELECT * FROM PartPoNTD INNER JOIN poNTD ON PartPoNTD.poNTD_idpoNTD = poNTD.idpoNTD WHERE poNTD.CARDS_idCARDS='+
-      DataModule2.PartRec.idCARDS.ToString();
+                            { TODO -cInsert: Назначение карты для Part в Mysql }
+  DataModule2.PartRec.idCARDS := DBLookupComboBox1.KeyValue;
+                            { TODO -cInsert: Назначение ПО НТД для Part и карты в Mysql }
+               //**************** Начало нового блока************
+  SQLsel:= 'SELECT * FROM PartPoNTD WHERE Parts_idParts = '+ DataModule2.PartRec.idCARDS.ToString +' AND Parts_idParts='+
+  DataModule2.PartRec.idPart.ToString+';';
 
-          if DataModule2.PartRec.ObshNTD=0 then
-     begin
-        DataModule2.MySQLqry.SQL.Add(' and PartPoNTD.Parts_idParts =' +DataModule2.PartRec.idPart.ToString+ ';');
-     end
-     else
-     begin
-        DataModule2.MySQLqry.SQL.Add(' and PartPoNTD.PartSubType_idPartSubTipe =' +DataModule2.PartRec.idPSubtipe.ToString+ ';');
-     end;
-      DataModule2.MySQLqry.Open;
-
-      if DataModule2.MySQLqry.RecordCount=0 then
-      begin
-                                               { TODO : Вставка КРР по НТД Data в Mysql }
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'INSERT INTO  poNTD (CARDS_idCARDS,Person_idPerson,Time) Value ('+
-          DataModule2.PartRec.idCARDS.ToString+','+DataModule2.PartRec.idPerson.ToString+ ',NOW());';
-          DataModule2.MySQLqry.ExecSQL;
-
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'SELECT LAST_INSERT_ID() as ID;';
-          DataModule2.MySQLqry.Open;
-          DataModule2.PartRec.idPoNTD :=  DataModule2.MySQLqry.FieldByName('ID').AsInteger;
-
-
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'INSERT INTO  PartPoNTD (Parts_idParts,poNTD_idpoNTD,PartSubType_idPartSubTipe,Person_idPerson,PartPoNTDDTAME) Value ('+
-          DataModule2.PartRec.idPart.ToString+','+ DataModule2.PartRec.idPoNTD.ToString+ ','+ DataModule2.PartRec.idPSubtipe.ToString + ','+
-           DataModule2.PartRec.idPerson.ToString+',NOW());';
-          DataModule2.MySQLqry.ExecSQL;
-
-          DataModule2.MySQLqry.Active := False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'SELECT LAST_INSERT_ID() as ID;';
-          DataModule2.MySQLqry.Open;
-          DataModule2.PartRec.idPatPoNTD :=  DataModule2.MySQLqry.FieldByName('ID').AsInteger;
-          //DataModule2.InsertRec;
-
-
-      end
-      else
-      begin
-          DataModule2.PartRec.idPatPoNTD := DataModule2.MySQLqry.FieldByName('idPatPoNTD').Value;
-
+      Case DataModule2.PartRec.ObshNTD of
+             0 : SQLsel:= SQLsel +  ' AND Parts_idParts ='+ DataModule2.PartRec.idPart.ToString+';';
+             1 : SQLsel:= SQLsel +  ' AND PartSubType_idPartSubTipe ='+ DataModule2.PartRec.idPSubtipe.ToString+';';
       end;
-                             { TODO : Вставка записи Data в Mysql }
 
-       CadComp(AdvStringGrid11,AdvStringGrid8);
+  SQLins := 'INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,Persоn_idPerson,PatPoNTDcol,'+
+  'PartPoNTD,PartPoNTDDTAME) Value ('+ DataModule2.PartRec.idPart.ToString+','+ DataModule2.PartRec.idPSubtipe.ToString+',' +
+  DataModule2.PartRec.idCARDS.ToString+','+DataModule2.PartRec.idPerson.ToString+',"'+ +'");';    { TODO -cInsert: Название ПО НТД для Part и карты в Mysql }
+  DataModule2.PartRec.idPartPoNTD :=  DataModule2.InsertRec(SQLsel,SQLins,'idPartPoNTD',False );
+               //**************** Конец нового блока************
+
+                                { TODO -cInsert: Регистрация datashet для Part в Mysql }
+      DataModule2.PartRec.idData := PocData(Edit5.Text,Edit3.Text,Edit4.Text);
+
+
+
+      CadComp(AdvStringGrid11,AdvStringGrid8);
 
       Form3.Close;
 end;
@@ -827,6 +785,9 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
+      SQLsel:= 'SELECT * FROM PCADLib WHERE PCADLibName1 = " ";';
+      SQLins := 'INSERT INTO PCADLib2 (PCADLibName) Value ("25");';
+      DataModule2.PCADrec.idLib :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLib',True);
       Form3.Close;
 end;
 
@@ -1280,7 +1241,7 @@ end;
 
 function TForm3.PCADComp(PCAD: TAdvStringGrid): Integer;
  begin
-     { TODO : Атрибуты PCAD }
+     { TODO -cInsert: Атрибуты PCAD Функция}
           //**************** Начало Атрибуты Pcad***********
           DataModule2.PCADrec.Status := False;
 
@@ -1375,7 +1336,7 @@ function TForm3.AltiumComp(Altium: TAdvStringGrid): Integer;
     Result:=1;
  end;
 function TForm3.CadComp(PCAD, Altium: TAdvStringGrid): Integer;
-begin                  { TODO : Атрибуты PCAD }
+begin                  { TODO -cInsert: Атрибуты PCAD }
           //**************** Начало Атрибуты Pcad***********
 
                  PCADComp(PCAD);

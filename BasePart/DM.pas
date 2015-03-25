@@ -13,7 +13,7 @@ uses
   type
 
 RecordData = record
-idPtipe,idPSubtipe,idPart,idCADkomponents,idPerson,idData,idPoNTD, idPatPoNTD: Integer;
+idPtipe,idPSubtipe,idPart,idCADkomponents,idPerson,idData,idPartPoNTD: Integer;
 idPic3D,idCARDS,ObshNTD,idFirmsIz,idFirmsRaz,PicJ: Integer;
 SubTipe,SubTipe1,Klass: string;
 end;
@@ -71,9 +71,11 @@ type
      PartRec:RecordData;
      PCADrec:PCADData;
      Altiumrec:ALTIUMData;
+     I:Integer;
      TexData,BaseTexData,TAOData,BaseTAOData:Datasheet;
-   function InsertRec(Sel,Ins,Column:string; Wstavka:Boolean):Integer;
-    { Public declarations }
+     /// <url>element://model:project::Karts/design:node:::72hgunbb1605oot0t_n</url>
+     function InsertRec(Sel, Ins, Column: string; Wstavka: Boolean): Integer;
+     { Public declarations }
   end;
 
 var
@@ -85,14 +87,21 @@ implementation
 
 {$R *.dfm}
   function TDataModule2.InsertRec(Sel,Ins,Column:string; Wstavka:Boolean): Integer;
-  begin
+  begin           { TODO -cData : InsertRec }
 			 //**************** Ќачало нового блока************
 		    if not Wstavka then
     begin
           DataModule2.MySQLqry.Active:= False;
           DataModule2.MySQLqry.SQL.Clear;
           DataModule2.MySQLqry.SQL.Text := Sel;//добавить пров. по  PartSubTipe_idPartSubTipe
-          DataModule2.MySQLqry.Open;
+          try
+              DataModule2.MySQLqry.Open;
+          except on E: Exception do
+           begin;
+            Result:=-1;
+            Exit();
+           end;
+          end;
     end;
 
       if (DataModule2.MySQLqry.RecordCount=0) or Wstavka then
@@ -101,7 +110,14 @@ implementation
           DataModule2.MySQLqry.Active := False;
           DataModule2.MySQLqry.SQL.Clear;
           DataModule2.MySQLqry.SQL.Text := Ins;
-          DataModule2.MySQLqry.ExecSQL;
+         try
+            DataModule2.MySQLqry.ExecSQL;
+         except on E: Exception do
+           begin;
+            Result:=-1;
+            Exit();
+           end;
+         end;
 
 
           DataModule2.MySQLqry.Active := False;
@@ -114,7 +130,6 @@ implementation
       else
       begin
           Result := DataModule2.MySQLqry.FieldByName(Column).Value;
-
       end;
 
   end;

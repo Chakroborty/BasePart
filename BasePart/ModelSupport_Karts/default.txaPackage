@@ -209,6 +209,11 @@
         <participant referencedUin="design:node:::n0ybkw4bgl_n:vaaru2e8eq_n" role="Supplier" />
       </link>
     </node>
+    <node uin="72hgunbb1605oot0t_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="InsertRec" />
+      <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:DM.TDataModule2.InsertRec(System.string,System.string,System.string,System.Boolean)" />
+    </node>
   </node>
   <node uin="kwe9pi0n21f_n">
     <property name="$metaclass" value="Note" />
@@ -247,5 +252,43 @@
       <participant referencedUin="design:node:::7pis26j05k4ha11di_n:vaaru2e8eq_n" role="Client" />
       <participant referencedUin="design:node:::1s20b7b87ig8d6uup_n" role="Supplier" />
     </link>
+  </node>
+  <node uin="dtl96s046mg_n">
+    <property name="$metaclass" value="Start State" />
+    <property name="$name" value="Start State2" />
+    <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.BitBtn7Click(System.TObject)" />
+    <link uin="ag2ad5iabhetpz0dh_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::dtl96s046mg_n" role="Client" />
+      <participant referencedUin="design:node:::jepthmenwrr_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="x1gf06j497n_n">
+    <property name="$metaclass" value="End State" />
+    <property name="$name" value="End State2" />
+  </node>
+  <node uin="jepthmenwrr_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Вставка записи Part в Mysql" />
+  </node>
+  <node uin="33cf2s03kil_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Activity2" />
+  </node>
+  <node uin="upxiekjgh1bv4c8jh_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note5" />
+    <property name="$note_text" value="BitBtn4Clic" />
+    <link uin="1w0v666vh1bqw5t7t_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::dtl96s046mg_n" role="Client" />
+      <participant referencedUin="design:node:::upxiekjgh1bv4c8jh_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="y0hi41y7flo_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Атрибуты PCAD" />
   </node>
 </nodeSet>

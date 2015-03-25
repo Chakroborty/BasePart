@@ -6,7 +6,7 @@
     <property name="$name" value="default" />
     <reference referencedUin="delphi:e_class:src:Karts:DM.TDataModule2">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="10,10,220,610" />
+      <property name="bounds" value="10,10,220,655" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.OpenDialog1" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.DataSource3" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.ADOTable3" />
@@ -67,6 +67,19 @@
         <property name="targetAnchor" value="249,286" />
         <property name="bendpoints" value="" />
       </reference>
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.I" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.TAOData" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.TDataModule2.BaseTAOData" />
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.TAOData">
+        <property name="sourceAnchor" value="230,278" />
+        <property name="targetAnchor" value="249,278" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:Karts:DM.TDataModule2.BaseTAOData">
+        <property name="sourceAnchor" value="230,270" />
+        <property name="targetAnchor" value="249,270" />
+        <property name="bendpoints" value="" />
+      </reference>
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:DM.PCADData">
       <property name="$shortcutReference" value="true" />
@@ -81,13 +94,14 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:DM.Datasheet">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="249,208,131,173" />
+      <property name="bounds" value="249,208,131,188" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.idDatasheet" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.idPartDtsh" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.Path" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.SubPath" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.DSHFile" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.DshStatus" />
+      <reference referencedUin="delphi:e_field:src:Karts:DM.Datasheet.Folder" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:DM.@unitclass">
       <property name="$shortcutReference" value="true" />
@@ -113,7 +127,6 @@
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idCADkomponents" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPerson" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idData" />
-      <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPoNTD" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPatPoNTD" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idPic3D" />
       <reference referencedUin="delphi:e_field:src:Karts:DM.RecordData.idCARDS" />

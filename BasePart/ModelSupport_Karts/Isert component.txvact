@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="462x0kfdext_v">
+    <property name="$metaclass" value="Activity Diagram" />
+    <property name="$name" value="Isert component" />
+    <reference referencedUin="design:node:::dtl96s046mg_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="background_color" value="0, 0, 0" />
+      <property name="bounds" value="440,60,20,20" />
+      <reference referencedUin="design:link:::ag2ad5iabhetpz0dh_l:dtl96s046mg_n">
+        <property name="sourceAnchor" value="450,79" />
+        <property name="targetAnchor" value="450,120" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::x1gf06j497n_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="440,580,20,20" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:node:::jepthmenwrr_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="360,120,206,22" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:node:::33cf2s03kil_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,200,87,22" />
+    </reference>
+    <reference referencedUin="design:node:::upxiekjgh1bv4c8jh_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="560,60,140,30" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:link:::1w0v666vh1bqw5t7t_l:upxiekjgh1bv4c8jh_n">
+        <property name="sourceAnchor" value="459,70" />
+        <property name="targetAnchor" value="560,70" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::y0hi41y7flo_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="400,420,135,22" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+  </view>
+</nodeSet>

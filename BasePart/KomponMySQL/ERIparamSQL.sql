@@ -7,7 +7,9 @@ INSERT INTO firms (FirmNAME,SSilka,Strani_idStrani) Value ("ОАО НПО ЭРК
 INSERT INTO strani (Strana) Value ("США");
 INSERT INTO firms (FirmNAME,SSilka,Strani_idStrani) Value ("Hittite Microwave Corporation","https://www.hittite.com/",2);
 INSERT INTO spiskirazr(SpisokIma) Value ("Перечень МОП");
-INSERT INTO spiskirazr(SpisokIma) Value ("Перечень разрешенных по заказу УПОП-03");
+INSERT INTO spiskirazr(SpisokIma) Value ("Перечень разрешенных по заказу УПОП-02");
+SELECT FOUND_ROWS() as ID; 
+SELECT LAST_INSERT_ID() as ID;
 
 SELECT * FROM userstatus;
 SELECT * FROM person;
