@@ -109,6 +109,7 @@ type
     TAOlbl: TLabel;
     Label11: TLabel;
     Label12: TLabel;
+    SpisokTree2: TVirtualStringTree;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ImBase1Click(Sender: TObject);
@@ -662,24 +663,25 @@ end;
 procedure TForm3.BitBtn7Click(Sender: TObject);
 begin
 
-                                 { TODO -cInsert: Вставка записи Part в Mysql }
+                         { TODO -cInsert: Вставка записи Part в Mysql }
 
 
-         //**************** Начало нового блока************
-                  SQLsel:= 'SELECT  * FROM Parts WHERE PartImKey = "'
-                  +  AdvStringGrid4.Cells[1,1]+'" AND PartFULLName="'+advstr2.Cells[1,13]+'";';//добавить пров. по  PartSubTipe_idPartSubTipe
-                  SQLins := 'INSERT INTO Parts (PartSubTipe_idPartSubTipe,PartImKey,PartName,PartFULLName,Person_idPerson,DateTime)	Value ('+
-                  DataModule2.PartRec.idPSubtipe.ToString+ ',"'+
-                  AdvStringGrid4.Cells[1,1]+'","'+advstr2.Cells[1,9]+'","'+advstr2.Cells[1,13]+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
+                         //**************** Начало нового блока************
+          SQLsel:= 'SELECT  * FROM Parts WHERE PartImKey = "'
+          +  AdvStringGrid4.Cells[1,1]+'" AND PartFULLName="'+advstr2.Cells[1,13]+'";';//добавить пров. по  PartSubTipe_idPartSubTipe
+          SQLins := 'INSERT INTO Parts (PartSubTipe_idPartSubTipe,PartImKey,PartName,PartFULLName,Person_idPerson,DateTime)	Value ('+
+          DataModule2.PartRec.idPSubtipe.ToString+ ',"'+
+          AdvStringGrid4.Cells[1,1]+'","'+advstr2.Cells[1,9]+'","'+advstr2.Cells[1,13]+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
 
-                  DataModule2.PartRec.idPart :=  DataModule2.InsertRec(SQLsel,SQLins,'idParts',False);
+          DataModule2.PartRec.idPart :=  DataModule2.InsertRec(SQLsel,SQLins,'idParts',False);
 
                             if DataModule2.PartRec.idPart<1 then
                   begin
                      Exit;
                   end;
 
-         //**************** Конец нового блока************
+                            //**************** Конец нового блока************
+          CadComp(AdvStringGrid11,AdvStringGrid8);
 
                              { TODO :  Вставка записи Temperature в Mysql }
           DataModule2.MySQLqry.Active := False;
@@ -704,18 +706,37 @@ begin
 
   SQLins := 'INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,Persоn_idPerson,PatPoNTDcol,'+
   'PartPoNTD,PartPoNTDDTAME) Value ('+ DataModule2.PartRec.idPart.ToString+','+ DataModule2.PartRec.idPSubtipe.ToString+',' +
-  DataModule2.PartRec.idCARDS.ToString+','+DataModule2.PartRec.idPerson.ToString+',"'+ +'");';    { TODO -cInsert: Название ПО НТД для Part и карты в Mysql }
+  DataModule2.PartRec.idCARDS.ToString+','+DataModule2.PartRec.idPerson.ToString+',"НТД");';    { TODO -cInsert: Название ПО НТД для Part и карты в Mysql }
   DataModule2.PartRec.idPartPoNTD :=  DataModule2.InsertRec(SQLsel,SQLins,'idPartPoNTD',False );
                //**************** Конец нового блока************
+                                 { TODO -cInsert: Назначение фирмы для Part в Mysql }
+  DataModule2.PartRec.idFirmsRaz:=dblkcbbFirmNAME.KeyValue;
+  DataModule2.PartRec.idFirmsIz:=DBLookupComboBox7.KeyValue;
+  DataModule2.MySQLqry.Active := False;
+  DataModule2.MySQLqry.SQL.Clear;
+  DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET Firms_idFirms ='+DataModule2.PartRec.idFirmsRaz.ToString+
+  ', Firms_idFirmsI='+DataModule2.PartRec.idFirmsIz.ToString+' WHERE idParts='+DataModule2.PartRec.idPart.ToString()+';';
+  DataModule2.MySQLqry.ExecSQL;
+
+                //**************** Конец нового блока************
 
                                 { TODO -cInsert: Регистрация datashet для Part в Mysql }
-      DataModule2.PartRec.idData := PocData(Edit5.Text,Edit3.Text,Edit4.Text);
+  DataModule2.PartRec.idData := PocData(Edit5.Text,Edit3.Text,Edit4.Text);
+                                  { TODO -cInsert: Назначение фирмы для Part в Mysql }
+  DataModule2.PartRec.idFirmsRaz:=dblkcbbFirmNAME.KeyValue;
+  DataModule2.PartRec.idFirmsIz:=DBLookupComboBox7.KeyValue;
+  DataModule2.MySQLqry.Active := False;
+  DataModule2.MySQLqry.SQL.Clear;
+  DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET Firms_idFirms ='+DataModule2.PartRec.idFirmsRaz.ToString+
+  ', Firms_idFirmsI='+DataModule2.PartRec.idFirmsIz.ToString+' WHERE idParts='+DataModule2.PartRec.idPart.ToString()+';';
+  DataModule2.MySQLqry.ExecSQL;
+
+                //**************** Конец нового блока************
 
 
 
-      CadComp(AdvStringGrid11,AdvStringGrid8);
 
-      Form3.Close;
+  Form3.Close;
 end;
 
 procedure TForm3.BitBtn8Click(Sender: TObject);

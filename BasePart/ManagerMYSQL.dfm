@@ -220,7 +220,7 @@ object Form3: TForm3
     Top = 265
     Width = 960
     Height = 535
-    ActivePage = advtbsht6
+    ActivePage = advtbsht1
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = clWindowText
     ActiveFont.Height = -11
@@ -1706,6 +1706,21 @@ object Form3: TForm3
         OnClickCheck = chklst1ClickCheck
         ItemHeight = 13
         TabOrder = 0
+      end
+      object SpisokTree2: TVirtualStringTree
+        Left = 424
+        Top = 25
+        Width = 305
+        Height = 240
+        Header.AutoSizeIndex = 0
+        Header.Font.Charset = DEFAULT_CHARSET
+        Header.Font.Color = clWindowText
+        Header.Font.Height = -11
+        Header.Font.Name = 'Tahoma'
+        Header.Font.Style = []
+        Header.MainColumn = -1
+        TabOrder = 1
+        Columns = <>
       end
     end
     object advtbsht8: TAdvTabSheet

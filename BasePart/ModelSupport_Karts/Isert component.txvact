@@ -25,7 +25,8 @@
     </reference>
     <reference referencedUin="design:node:::33cf2s03kil_n">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="420,200,87,22" />
+      <property name="bounds" value="400,180,87,22" />
+      <property name="location_set_by_user" value="True" />
     </reference>
     <reference referencedUin="design:node:::upxiekjgh1bv4c8jh_n">
       <property name="$shortcutReference" value="true" />
@@ -39,7 +40,7 @@
     </reference>
     <reference referencedUin="design:node:::y0hi41y7flo_n">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="400,420,135,22" />
+      <property name="bounds" value="380,360,135,22" />
       <property name="location_set_by_user" value="True" />
     </reference>
   </view>
