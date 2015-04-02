@@ -188,6 +188,12 @@
       <property name="$metaclass" value="Activity" />
       <property name="$name" value="Данные Altium" />
       <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:ManagerMYSQL.TForm3.Altium1Click(System.TObject)" />
+      <link uin="v7pb9cx5vco_l">
+        <property name="$metaclass" value="Transition" />
+        <property name="$name" value="Transition1" />
+        <participant referencedUin="design:node:::n0ybkw4bgl_n:vaaru2e8eq_n" role="Client" />
+        <participant referencedUin="design:node:::tp33t13b8lg_n:vaaru2e8eq_n" role="Supplier" />
+      </link>
     </node>
     <node uin="0ku2i45ld0n_n">
       <property name="$metaclass" value="Activity" />
@@ -213,6 +219,10 @@
       <property name="$metaclass" value="Activity" />
       <property name="$name" value="InsertRec" />
       <property name="@url" value="element://model:project::Karts/delphi:e_method:src:Karts:DM.TDataModule2.InsertRec(System.string,System.string,System.string,System.Boolean)" />
+    </node>
+    <node uin="tp33t13b8lg_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Activity1" />
     </node>
   </node>
   <node uin="kwe9pi0n21f_n">
@@ -272,10 +282,6 @@
     <property name="$metaclass" value="Activity" />
     <property name="$name" value="Вставка записи Part в Mysql" />
   </node>
-  <node uin="33cf2s03kil_n">
-    <property name="$metaclass" value="Activity" />
-    <property name="$name" value="Activity2" />
-  </node>
   <node uin="upxiekjgh1bv4c8jh_n">
     <property name="$metaclass" value="Note" />
     <property name="$name" value="Note5" />
@@ -287,8 +293,56 @@
       <participant referencedUin="design:node:::upxiekjgh1bv4c8jh_n" role="Supplier" />
     </link>
   </node>
-  <node uin="y0hi41y7flo_n">
+  <node uin="0hpdeo0aupl6za90g_n">
     <property name="$metaclass" value="Activity" />
-    <property name="$name" value="Атрибуты PCAD" />
+    <property name="$name" value="Вхождение  Part в список" />
+  </node>
+  <node uin="iangqyk5cj314eirg_n">
+    <property name="$metaclass" value="State" />
+    <property name="$name" value="Вставка данных CAD в Mysql" />
+    <node uin="y0hi41y7flo_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Атрибуты PCAD" />
+    </node>
+    <node uin="33cf2s03kil_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Атрибуты PCAD Функция" />
+    </node>
+    <node uin="aa87gmeeiw9l567or_n">
+      <property name="$metaclass" value="Activity" />
+      <property name="$name" value="Атрибуты Altium" />
+    </node>
+    <link uin="gbbpboew43k_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::iangqyk5cj314eirg_n" role="Client" />
+      <participant referencedUin="design:node:::ty2mb0tsjyigy0zbi_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="rgbq50h57mk_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Назначение фирмы для Part в Mysql" />
+  </node>
+  <node uin="n0ewax0i4mi_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Регистрация datashet для Part в Mysql" />
+  </node>
+  <node uin="ty2mb0tsjyigy0zbi_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Вставка записи Temperature в Mysql" />
+    <link uin="tdjcf0cekkt_l">
+      <property name="$metaclass" value="Transition" />
+      <property name="$name" value="Transition1" />
+      <participant referencedUin="design:node:::ty2mb0tsjyigy0zbi_n" role="Client" />
+      <participant referencedUin="design:node:::tz4qb45a2lmtwf5vn_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="tz4qb45a2lmtwf5vn_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Назначение карты для Part в Mysql" />
+  </node>
+  <node uin="yh7ecsz9n9ql7ddlt_n">
+    <property name="$metaclass" value="Activity" />
+    <property name="$name" value="Назначение ПО НТД для Part и карты в Mysql" />
   </node>
 </nodeSet>

@@ -24,7 +24,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TForm3">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="320,1,279,1915" />
+      <property name="bounds" value="320,1,279,1930" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.BitBtn1" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.PopupMenu1" />
       <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.ImBase1" />
@@ -148,6 +148,7 @@
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.CadComp(AdvGrid.TAdvStringGrid,AdvGrid.TAdvStringGrid)" />
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.PCADComp(AdvGrid.TAdvStringGrid)" />
       <reference referencedUin="delphi:e_method:src:Karts:ManagerMYSQL.TForm3.AltiumComp(AdvGrid.TAdvStringGrid)" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TForm3.SpisokTree2" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.@unitclass">
       <property name="$shortcutReference" value="true" />
@@ -235,6 +236,16 @@
     <reference referencedUin="design:view:::s91cq00a50192epon_v">
       <property name="$shortcutReference" value="true" />
       <property name="bounds" value="10,10,133,42" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.PSpisValue">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="162,1,156,36" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Karts:ManagerMYSQL.TSpisValue">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="162,56,105,113" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TSpisValue.idSpis" />
+      <reference referencedUin="delphi:e_field:src:Karts:ManagerMYSQL.TSpisValue.SpisTipe" />
     </reference>
   </view>
 </nodeSet>

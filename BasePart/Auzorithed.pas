@@ -61,8 +61,13 @@ begin
             DataModule2.MySQLqry.ExecSQL;
             Form1.Polzovatel.Status := DataModule2.MySQLqry.FieldByName('Status').Value;
             Form1.Polzovatel.StaNum := DataModule2.MySQLqry.FieldByName('StaNum').Value;
-            ProgressBar1.Visible:= True;
-            tmr1.Enabled:=True;
+            ShowMessage('Вы вошли как '+ Form1.Polzovatel.Status+': ' + Form1.Polzovatel.Famili+' '+Form1.Polzovatel.Name +' '
+                  + Form1.Polzovatel.Otchestvo);
+                  Form1.Show;
+
+
+           // ProgressBar1.Visible:= True;
+           // tmr1.Enabled:=True;
 
 
 

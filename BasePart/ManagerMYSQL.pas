@@ -16,7 +16,12 @@ TAttrValue = record
 idPtipe,idPSubtipe,ObshNTD,PicJ: Integer;
 SubTipe,SubTipe1,Klass,Subpath: string;
 end;
-
+ type
+PSpisValue = ^TSpisValue;
+TSpisValue = record
+idSpis: Integer;
+SpisTipe: string;
+end;
 
 type
   TForm3 = class(TForm)
@@ -87,7 +92,6 @@ type
     DBLookupComboBox3: TDBLookupComboBox;
     Edit3: TEdit;
     Edit6: TEdit;
-    chklst1: TCheckListBox;
     Label5: TLabel;
     mmo1: TMemo;
     BitBtn4: TBitBtn;
@@ -110,6 +114,7 @@ type
     Label11: TLabel;
     Label12: TLabel;
     SpisokTree2: TVirtualStringTree;
+    N5: TMenuItem;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ImBase1Click(Sender: TObject);
@@ -151,10 +156,18 @@ type
     /// <url>element://model:project::Karts/design:view:::63q14yq20hih74zht_v</url>
     /// <url>element://model:project::Karts/design:view:::vdh9q11m3dijptpip_v</url>
     /// <url>element://model:project::Karts/design:node:::dtl96s046mg_n</url>
+
     procedure BitBtn7Click(Sender: TObject);
     procedure dblkcbbFirmNAMEClick(Sender: TObject);
     procedure DBLookupComboBox7Click(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
+    procedure SpisokTree2GetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
+    procedure SpisokTree2NodeClick(Sender: TBaseVirtualTree;
+      const HitInfo: THitInfo);
+    procedure SpisokTree2InitNode(Sender: TBaseVirtualTree; ParentNode,
+      Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
+    procedure N5Click(Sender: TObject);
   private
 
 
@@ -162,10 +175,10 @@ type
   public
     { Public declarations }
     /// <url>element://model:project::Karts/design:node:::sbv76h601okoy10ts_n</url>
-    function PocData(DatashetName, SubPath, Path: string): Integer;
-    function CadComp(PCAD, Altium: TAdvStringGrid): Integer;
-    function PCADComp(PCAD: TAdvStringGrid): Integer;
-    function AltiumComp(Altium: TAdvStringGrid): Integer;
+    procedure PocData(DatashetName, SubPath, Path: string);
+    procedure CadComp(PCAD, Altium: TAdvStringGrid);
+    procedure PCADComp(PCAD: TAdvStringGrid);
+    procedure AltiumComp(Altium: TAdvStringGrid);
   end;
 
 var
@@ -183,7 +196,8 @@ var
   STR,TableOUT,TableIN: string;
   SQLsel,SQLins: string;
   TreData: PAttrValue;
-  RootNode, ChildNode,ChildNode1,ChildNode2,ChildNode3,ChildNode4: PVirtualNode;
+  TreSpisok: PSpisValue;
+  SpisNode,RootNode, ChildNode,ChildNode1,ChildNode2,ChildNode3,ChildNode4: PVirtualNode;
 
 implementation
 
@@ -677,52 +691,64 @@ begin
 
                             if DataModule2.PartRec.idPart<1 then
                   begin
-                     Exit;
+                    MessageDlg('Запись содержит ошибки и не добавлена.', mtError, [mbOK], 0);
+                    Exit;
                   end;
 
                             //**************** Конец нового блока************
+
+                             { TODO -cInsert:  Вставка данных CAD в Mysql }
           CadComp(AdvStringGrid11,AdvStringGrid8);
 
-                             { TODO :  Вставка записи Temperature в Mysql }
+                    if DataModule2.PartRec.idCADkomponents>0 then
+          begin
+            DataModule2.MySQLqry.Active := False;
+            DataModule2.MySQLqry.SQL.Clear;
+            DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET CADkomponents_idCADkomponents ='+DataModule2.PartRec.idCADkomponents.ToString()+' WHERE idParts='+
+            DataModule2.PartRec.idPart.ToString()+';';
+            DataModule2.MySQLqry.ExecSQL;
+            end;
+                          //**************** Конец блока************
+
+                             { TODO -cInsert:  Вставка записи Temperature в Mysql }
           DataModule2.MySQLqry.Active := False;
           DataModule2.MySQLqry.SQL.Clear;
           DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET TplusXR ='+AdvStringGrid13.Cells[1,1]+', TplusRAB='+AdvStringGrid13.Cells[1,2]+
           ', TminXR='+AdvStringGrid13.Cells[1,3]+', TminRAB ='+AdvStringGrid13.Cells[1,4]+' WHERE idParts='+
           DataModule2.PartRec.idPart.ToString()+';';
           DataModule2.MySQLqry.ExecSQL;
-          //************************************************************************************
+              //************************************************************************************
 
-                            { TODO -cInsert: Назначение карты для Part в Mysql }
-  DataModule2.PartRec.idCARDS := DBLookupComboBox1.KeyValue;
-                            { TODO -cInsert: Назначение ПО НТД для Part и карты в Mysql }
-               //**************** Начало нового блока************
-  SQLsel:= 'SELECT * FROM PartPoNTD WHERE Parts_idParts = '+ DataModule2.PartRec.idCARDS.ToString +' AND Parts_idParts='+
-  DataModule2.PartRec.idPart.ToString+';';
+                                        { TODO -cInsert: Назначение карты для Part в Mysql }
+          DataModule2.PartRec.idCARDS := DBLookupComboBox1.KeyValue;
+                                        { TODO -cInsert: Назначение ПО НТД для Part и карты в Mysql }
+                       //**************** Начало нового блока************
+          SQLsel:= 'SELECT * FROM PartPoNTD WHERE CARTS_idCARDS = '+ DataModule2.PartRec.idCARDS.ToString;
 
-      Case DataModule2.PartRec.ObshNTD of
-             0 : SQLsel:= SQLsel +  ' AND Parts_idParts ='+ DataModule2.PartRec.idPart.ToString+';';
-             1 : SQLsel:= SQLsel +  ' AND PartSubType_idPartSubTipe ='+ DataModule2.PartRec.idPSubtipe.ToString+';';
-      end;
+              Case DataModule2.PartRec.ObshNTD of
+                     0 : SQLsel:= SQLsel +  ' AND Parts_idParts ='+ DataModule2.PartRec.idPart.ToString+';';
+                     1 : SQLsel:= SQLsel +  ' AND PartSubType_idPartSubTipe ='+ DataModule2.PartRec.idPSubtipe.ToString+';';
+              end;
 
-  SQLins := 'INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,Persоn_idPerson,PatPoNTDcol,'+
-  'PartPoNTD,PartPoNTDDTAME) Value ('+ DataModule2.PartRec.idPart.ToString+','+ DataModule2.PartRec.idPSubtipe.ToString+',' +
-  DataModule2.PartRec.idCARDS.ToString+','+DataModule2.PartRec.idPerson.ToString+',"НТД");';    { TODO -cInsert: Название ПО НТД для Part и карты в Mysql }
-  DataModule2.PartRec.idPartPoNTD :=  DataModule2.InsertRec(SQLsel,SQLins,'idPartPoNTD',False );
-               //**************** Конец нового блока************
-                                 { TODO -cInsert: Назначение фирмы для Part в Mysql }
-  DataModule2.PartRec.idFirmsRaz:=dblkcbbFirmNAME.KeyValue;
-  DataModule2.PartRec.idFirmsIz:=DBLookupComboBox7.KeyValue;
-  DataModule2.MySQLqry.Active := False;
-  DataModule2.MySQLqry.SQL.Clear;
-  DataModule2.MySQLqry.SQL.Text:='UPDATE Parts SET Firms_idFirms ='+DataModule2.PartRec.idFirmsRaz.ToString+
-  ', Firms_idFirmsI='+DataModule2.PartRec.idFirmsIz.ToString+' WHERE idParts='+DataModule2.PartRec.idPart.ToString()+';';
-  DataModule2.MySQLqry.ExecSQL;
+          SQLins := 'INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,PartPoNTD,Person_idPerson,'+
+          'PartPoNTDDTAME) Value ('+ DataModule2.PartRec.idPart.ToString+','+ DataModule2.PartRec.idPSubtipe.ToString+',' +
+          DataModule2.PartRec.idCARDS.ToString+',"",'+DataModule2.PartRec.idPerson.ToString+',NOW());';    { TODO -cInsert: Название ПО НТД для Part и карты в Mysql }
+          DataModule2.PartRec.idPartPoNTD :=  DataModule2.InsertRec(SQLsel,SQLins,'idPartPoNTD',False );
+                       //**************** Конец нового блока************
+                                        { TODO -cInsert: Назначение фирмы для Part в Mysql }
+          DataModule2.PartRec.idFirmsRaz := dblkcbbFirmNAME.KeyValue;
+          DataModule2.PartRec.idFirmsIz := DBLookupComboBox7.KeyValue;
+          DataModule2.MySQLqry.Active := False;
+          DataModule2.MySQLqry.SQL.Clear;
+          DataModule2.MySQLqry.SQL.Text := 'UPDATE Parts SET Firms_idFirms ='+DataModule2.PartRec.idFirmsRaz.ToString+
+          ', Firms_idFirmsI='+DataModule2.PartRec.idFirmsIz.ToString+' WHERE idParts='+DataModule2.PartRec.idPart.ToString()+';';
+          DataModule2.MySQLqry.ExecSQL;
 
                 //**************** Конец нового блока************
 
                                 { TODO -cInsert: Регистрация datashet для Part в Mysql }
-  DataModule2.PartRec.idData := PocData(Edit5.Text,Edit3.Text,Edit4.Text);
-                                  { TODO -cInsert: Назначение фирмы для Part в Mysql }
+          PocData(Edit5.Text,Edit3.Text,Edit4.Text);
+                                { TODO -cInsert: Назначение фирмы для Part в MysqlРегистрация datashet для Part в Mysql}
   DataModule2.PartRec.idFirmsRaz:=dblkcbbFirmNAME.KeyValue;
   DataModule2.PartRec.idFirmsIz:=DBLookupComboBox7.KeyValue;
   DataModule2.MySQLqry.Active := False;
@@ -732,8 +758,44 @@ begin
   DataModule2.MySQLqry.ExecSQL;
 
                 //**************** Конец нового блока************
+                                { TODO -cInsert: Вхождение  Part в список }
+//******************************
+
+	    SpisNode := SpisokTree2.GetFirst;
+  while Assigned(SpisNode) do
+  begin
+           TreSpisok := SpisokTree2.GetNodeData(SpisNode);
+          if SpisNode.CheckState=csCheckedNormal then
+     begin
+ //**************** Начало нового блока************
+
+            if DataModule2.PartRec.ObshNTD=1 then
+      begin
+        SQLsel:= 'SELECT * FROM PartSpisok WHERE PartSubType_idPartSubTipe = "'+ DataModule2.PartRec.idPSubtipe.ToString
+              +' AND SpiskiRazr_idSpickiRazr='+TreSpisok.idSpis.ToString+'";';
+      end
+      else
+      begin
+        SQLsel:= 'SELECT * FROM PartSpisok WHERE Parts_idParts = "'+ DataModule2.PartRec.idPart.ToString
+              +' AND SpiskiRazr_idSpickiRazr='+TreSpisok.idSpis.ToString+'";';
+      end;
+      SQLins := 'INSERT INTO PartSpisok  (Parts_idParts,SpiskiRazr_idSpickiRazr,SpiskiRazr_idSpickiRazr) Value ('+
+        DataModule2.PartRec.idPart.ToString+','+DataModule2.PartRec.idPSubtipe.ToString+
+        ','+TreSpisok.idSpis.ToString+');';
+      DataModule2.PCADrec.idLib :=  DataModule2.InsertRec(SQLsel,SQLins,'idPartsSpisok',False);
+ //**************** Конец нового блока************ MessageDlg('Узел  выбран ',  mtInformation, [mbOK], 0);
 
 
+     end
+     else
+     begin
+        MessageDlg('Узел  Свободен ',  mtInformation, [mbOK], 0);
+     end;
+
+
+
+      SpisNode := SpisokTree2.GetNext(SpisNode);
+  end;
 
 
   Form3.Close;
@@ -806,9 +868,7 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
-      SQLsel:= 'SELECT * FROM PCADLib WHERE PCADLibName1 = " ";';
-      SQLins := 'INSERT INTO PCADLib2 (PCADLibName) Value ("25");';
-      DataModule2.PCADrec.idLib :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLib',True);
+    
       Form3.Close;
 end;
 
@@ -986,10 +1046,14 @@ begin
 
           KategoryTree1.FullExpand();
           DataModule2.DataSource1.DataSet.First;
-
+          SpisokTree2.Clear;
           while not DataModule2.DataSource1.DataSet.Eof do
      begin
-        chklst1.AddItem(DataModule2.DataSource1.DataSet.FieldByName('SpisokIma').Value,Sender);
+        //chklst1.AddItem(DataModule2.DataSource1.DataSet.FieldByName('SpisokIma').Value,Sender);
+        ChildNode4 := SpisokTree2.AddChild(nil);
+        TreSpisok := SpisokTree2.GetNodeData(ChildNode4);
+        TreSpisok.idSpis :=   DataModule2.DataSource1.DataSet.FieldByName('idSpickiRazr').Value;
+        TreSpisok.SpisTipe := DataModule2.DataSource1.DataSet.FieldByName('SpisokIma').Value;
         DataModule2.DataSource1.DataSet.Next;
      end;
 
@@ -1054,6 +1118,7 @@ end;
 procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
          KategoryTree1.Clear;
+         SpisokTree2.Clear;
          Image1.Picture:= nil;
          GridClear(advstr2,14);
          GridClear(AdvStringGrid4,7);
@@ -1062,7 +1127,7 @@ begin
          GridClear(AdvStringGrid11,4);
          GridClear(AdvStringGrid12,15);
          AdvPageControl1.ActivePageIndex:=0;
-         chklst1.Clear;
+
          DBLookupComboBox1.KeyValue:=0;
          DBLookupComboBox2.KeyValue:=0;
          dblkcbbFirmNAME.KeyValue:=0;
@@ -1078,6 +1143,8 @@ begin
     Lst := TStringList.Create;
     InDatBase := CoImDataBase.Create;
     KategoryTree1.NodeDataSize := SizeOf(TAttrValue);
+     SpisokTree2.NodeDataSize :=  SizeOf(TSpisValue);
+     SpisokTree2.TreeOptions.MiscOptions := SpisokTree2.TreeOptions.MiscOptions+[toCheckSupport];
 end;
 procedure TForm3.ImBase1Click(Sender: TObject);
 begin
@@ -1220,62 +1287,99 @@ end;
 
 
 
-function TForm3.PocData(DatashetName,SubPath,Path:string):Integer;
-begin     { TODO : Вставка записи Data в Mysql func }
-
-
-      DataModule2.MySQLqry.Active:= False;
-      DataModule2.MySQLqry.SQL.Clear;
-      DataModule2.MySQLqry.SQL.Text := 'SELECT * FROM datashets WHERE DatashetName = "'
-      +  DatashetName+'";';//добавить пров. по  PartSubTipe_idPartSubTipe
-      DataModule2.MySQLqry.Open;
+procedure TForm3.N5Click(Sender: TObject);
+begin
+        SpisNode := SpisokTree2.GetFirst;
+  while Assigned(SpisNode) do
+  begin
 
 
 
+          if SpisNode.CheckState=csCheckedNormal then
+     begin
+        MessageDlg('Узел  выбран ',  mtInformation, [mbOK], 0);
+     end
+     else
+     begin
+        MessageDlg('Узел  свободен ',  mtInformation, [mbOK], 0);
+     end;
+     SpisNode := SpisokTree2.GetNext(SpisNode);
+  end;
 
-      if DataModule2.MySQLqry.RecordCount=0 then
-      begin
-
-          DataModule2.MySQLqry.Active:= False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'INSERT INTO datashets (DatashetName,DatashetPath,DatashetSubPath,Person_idPerson,Data_tame)	Value ("'+
-          DatashetName+ '","'+ Path.Replace('\','\\')+'","'+SubPath.Replace('\','\\')+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
-          DataModule2.MySQLqry.ExecSQL;
-
-
-
-          DataModule2.MySQLqry.Active:= False;
-          DataModule2.MySQLqry.SQL.Clear;
-          DataModule2.MySQLqry.SQL.Text := 'SELECT LAST_INSERT_ID() as ID;';
-          DataModule2.MySQLqry.Open;
-          Result :=  DataModule2.MySQLqry.FieldByName('ID').AsInteger;
-
-
-      end
-      else
-      begin
-          Result := DataModule2.MySQLqry.FieldByName('idDatashets').Value;
-
-
-      end;
 end;
 
-function TForm3.PCADComp(PCAD: TAdvStringGrid): Integer;
+procedure TForm3.PocData(DatashetName,SubPath,Path:string);
+begin     { TODO : Вставка записи Data в Mysql func }
+
+   //**************** Начало нового блока************
+  SQLsel := 'SELECT * FROM datashets WHERE DatashetName = "'+  DatashetName+'";';
+  SQLins := 'INSERT INTO datashets (DatashetName,DatashetPath,DatashetSubPath,Person_idPerson,Data_tame) Value ("'+
+  DatashetName+ '","'+ Path.Replace('\','\\')+'","'+SubPath.Replace('\','\\')+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
+  DataModule2.PartRec.idData :=  DataModule2.InsertRec(SQLsel,SQLins,'idDatashets',False);
+   //**************** Конец нового блока************
+
+   //**************** Начало нового блока************
+  SQLsel := 'SELECT * FROM datashets WHERE DatashetName = "'+  DatashetName+'";';
+  SQLins := 'INSERT INTO datashets (DatashetName,DatashetPath,DatashetSubPath,Person_idPerson,Data_tame) Value ("'+
+  DatashetName+ '","'+ Path.Replace('\','\\')+'","'+SubPath.Replace('\','\\')+'",'+ DataModule2.PartRec.idPerson.ToString+',NOW());';
+  DataModule2.PartRec.idData :=  DataModule2.InsertRec(SQLsel,SQLins,'idDatashets',False);
+   //**************** Конец нового блока************
+
+
+
+end;
+
+procedure TForm3.SpisokTree2GetText(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
+  var CellText: string);
+begin
+        TreSpisok := Sender.GetNodeData(Node);
+   case Column of
+      0:
+      begin
+
+        CellText := '';
+      end;
+
+      1:
+      begin
+
+        CellText := TreSpisok.SpisTipe ;
+      end;
+
+
+    end;
+end;
+
+procedure TForm3.SpisokTree2InitNode(Sender: TBaseVirtualTree; ParentNode,
+  Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
+begin
+   Node.CheckType := ctCheckBox;
+end;
+
+procedure TForm3.SpisokTree2NodeClick(Sender: TBaseVirtualTree;
+  const HitInfo: THitInfo);
+begin
+      BitBtn6.Enabled := True;
+end;
+
+procedure TForm3.PCADComp(PCAD: TAdvStringGrid);
  begin
-     { TODO -cInsert: Атрибуты PCAD Функция}
+                        { TODO -cInsert: Атрибуты PCAD Функция}
           //**************** Начало Атрибуты Pcad***********
           DataModule2.PCADrec.Status := False;
 
           if PCAD.Cells[1,1].IsEmpty or PCAD.Cells[1,2].IsEmpty or PCAD.Cells[1,3].IsEmpty or PCAD.Cells[1,4].IsEmpty then
   begin
          DataModule2.PCADrec.Status := False;
+         DataModule2.PCADrec.idPCADLiBparts :=-1;
   end
   else
   begin
 
       //**************** Начало нового блока PCADLibName************
       SQLsel:= 'SELECT * FROM PCADLib WHERE PCADLibName = "'+  PCAD.Cells[1,4]+'";';
-      SQLins := 'INSERT INTO PCADLib (PCADLibName) Value ("'+PCAD.Cells[1,4]+'");';
+      SQLins:= 'INSERT INTO PCADLib (PCADLibName) Value ("'+PCAD.Cells[1,4]+'");';
       DataModule2.PCADrec.idLib :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLib',False);
 
 			//**************** Начало нового блока************
@@ -1294,37 +1398,38 @@ function TForm3.PCADComp(PCAD: TAdvStringGrid): Integer;
       //**************** Начало нового блока LibPCADpart************
       SQLsel:= 'SELECT * FROM PCADLiBparts  WHERE PCADSymbols_idSymbols = ' + DataModule2.PCADrec.idSymb.ToString + ' AND PCADPattern_idPattern='+DataModule2.PCADrec.idPatern.ToString+
       ' AND PCADLib_idPCADLib='+ DataModule2.PCADrec.idLib.ToString+' AND PCADLiBpartName="'+PCAD.Cells[1,1]+'";';
-      SQLins := 'INSERT INTO PCADLiBparts (PCADpart,PCADSymbols_idSymbols,PCADPattern_idPattern,PCADLib_idPCADLib)	Value ("'+PCAD.Cells[1,1]+'",'
+      SQLins := 'INSERT INTO PCADLiBparts (PCADLiBpartName,PCADSymbols_idSymbols,PCADPattern_idPattern,PCADLib_idPCADLib)	Value ("'+PCAD.Cells[1,1]+'",'
       + DataModule2.PCADrec.idSymb.ToString +','+DataModule2.PCADrec.idPatern.ToString+','+DataModule2.PCADrec.idLib.ToString+');';
-      DataModule2.PCADrec.idPCADLiBparts :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLiBparts',False);
+      DataModule2.PCADrec.idComp :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLiBparts',False);
       //**************** Конец нового блока************
       DataModule2.PCADrec.Status := True;
 
 
   end;
-    Result:=1;
+
  end;
-function TForm3.AltiumComp(Altium: TAdvStringGrid): Integer;
+procedure TForm3.AltiumComp(Altium: TAdvStringGrid);
  begin
         { TODO : Атрибуты Altium }
           //**************** Начало Атрибуты Altium***********
-          DataModule2.Altiumrec.Status := False;
+        DataModule2.Altiumrec.Status := False;
 
            if Altium.Cells[1,1].IsEmpty or Altium.Cells[1,2].IsEmpty or Altium.Cells[1,3].IsEmpty or Altium.Cells[1,4].IsEmpty then
   begin
          DataModule2.Altiumrec.Status := False;
+         DataModule2.Altiumrec.idComp := -1;
   end
   else
   begin
 
           //**************** Начало нового блока LibPaths************
           SQLsel:= 'SELECT * FROM LibPaths WHERE LibPath = "' +  Altium.Cells[1,4]+'";';
-          SQLins := 'INSERT INTO PCADPattern (LibPath)	Value ("'+  Altium.Cells[1,4]+'");';
+          SQLins := 'INSERT INTO LibPaths (LibPath)	Value ("'+  Altium.Cells[1,4]+'");';
           DataModule2.Altiumrec.idLibPath :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibPath',False);
           //**************** Конец нового блока*************************
 
           //**************** Начало нового блока LibRef************
-          SQLsel:= 'SELECT * FROM LibRefs WHERE LibRef = "'+  Altium.Cells[1,3]+' AND LibPaths_idLibPath='+DataModule2.Altiumrec.idLibPath.ToString+'";';
+          SQLsel:= 'SELECT * FROM LibRefs WHERE LibRef = "'+  Altium.Cells[1,3]+'" AND LibPaths_idLibPath='+DataModule2.Altiumrec.idLibPath.ToString+';';
           SQLins := 'INSERT INTO LibRefs (LibRef,LibPaths_idLibPath) Value ("'+Altium.Cells[1,3]+'",'+DataModule2.Altiumrec.idLibPath.ToString+');';
           DataModule2.Altiumrec.idLibRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibRef',False);
           //**************** Конец нового блока*************************
@@ -1337,16 +1442,16 @@ function TForm3.AltiumComp(Altium: TAdvStringGrid): Integer;
           //**************** Конец нового блока*********************
 
           //**************** Начало нового блока FootprRefs************
-          SQLsel:= 'SELECT * FROM FootprRefs WHERE FootprRef = "' + Altium.Cells[1,1] + ' AND FootprPaths_idFootprPath='+
-          DataModule2.Altiumrec.idFootPath.ToString+'";';
-          SQLins := 'INSERT INTO FootprRefs (FootprRef,FootprPaths_idFootprPath)	Value ("'+ Altium.Cells[1,1]+'",'+Altium.Cells[1,1]+'");';
+          SQLsel:= 'SELECT * FROM FootprRefs WHERE FootprRef = "' + Altium.Cells[1,1] + '" AND FootprPaths_idFootprPath='+
+          DataModule2.Altiumrec.idFootPath.ToString+';';
+          SQLins := 'INSERT INTO FootprRefs (FootprRef,FootprPaths_idFootprPath) Value ("'+ Altium.Cells[1,1]+'",'+DataModule2.Altiumrec.idFootPath.ToString+');';
           DataModule2.Altiumrec.idFootprRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idFootprRef',False);
           //**************** Конец нового блока***********************
 
           //**************** Начало нового блока PCADLiBparts************
           SQLsel:= 'SELECT * FROM AltiumParts WHERE LibRefs_idLibRef= ' + DataModule2.Altiumrec.idLibRef.ToString + ' AND FootprRefs_idFootprRef='+
           DataModule2.Altiumrec.idLibRef.ToString+' AND AltiumPart="'+Altium.Cells[1,1]+'";';
-          SQLins := 'INSERT INTO AltiumParts (LibRefs_idLibRef,FootprRefs_idFootprRef,AltiumPart)	Value ('+ DataModule2.PCADrec.idSymb.ToString +','
+          SQLins := 'INSERT INTO AltiumParts (LibRefs_idLibRef,FootprRefs_idFootprRef,AltiumPart)	Value ('+ DataModule2.Altiumrec.idLibRef.ToString +','
           +DataModule2.Altiumrec.idFootprRef.ToString+',"'+Altium.Cells[1,1]+'");';
           DataModule2.Altiumrec.idComp :=  DataModule2.InsertRec(SQLsel,SQLins,'idAltiumPart',False);
           //**************** Конец нового блока***************************
@@ -1354,129 +1459,107 @@ function TForm3.AltiumComp(Altium: TAdvStringGrid): Integer;
 
   end;
 
-    Result:=1;
+
+
  end;
-function TForm3.CadComp(PCAD, Altium: TAdvStringGrid): Integer;
+procedure TForm3.CadComp(PCAD, Altium: TAdvStringGrid);
 begin                  { TODO -cInsert: Атрибуты PCAD }
           //**************** Начало Атрибуты Pcad***********
 
                  PCADComp(PCAD);
+                       { TODO -cInsert: Атрибуты Altium }
+          //**************** Начало Атрибуты Altium***********
+                 AltiumComp(Altium);
 
-        //  DataModule2.PCADrec.Status := False;
 //
-//          if PCAD.Cells[1,1].IsEmpty or PCAD.Cells[1,2].IsEmpty or PCAD.Cells[1,3].IsEmpty or PCAD.Cells[1,4].IsEmpty then
+//          DataModule2.Altiumrec.Status := False;
+//
+//           if Altium.Cells[1,1].IsEmpty or Altium.Cells[1,2].IsEmpty or Altium.Cells[1,3].IsEmpty or Altium.Cells[1,4].IsEmpty then
 //  begin
-//         DataModule2.PCADrec.Status := False;
+//         DataModule2.Altiumrec.Status := False;
 //  end
 //  else
 //  begin
 //
-//      **************** Начало нового блока PCADLibName************
-//      SQLsel:= 'SELECT * FROM PCADLib WHERE PCADLibName = "'+  PCAD.Cells[1,4]+'";';
-//      SQLins := 'INSERT INTO PCADLib (PCADLibName) Value ("'+PCAD.Cells[1,4]+'");';
-//      DataModule2.PCADrec.idLib :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLib',True);
+//          //**************** Начало нового блока LibPaths************
+//          SQLsel:= 'SELECT * FROM LibPaths WHERE LibPath = "' +  Altium.Cells[1,4]+'";';
+//          SQLins := 'INSERT INTO LibPaths (LibPath)	Value ("'+  Altium.Cells[1,4]+'");';
+//          DataModule2.Altiumrec.idLibPath :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibPath',False);
+//          //**************** Конец нового блока*************************
 //
-//			 **************** Начало нового блока************
-//
-//
-//			DataModule2.MySQLqry.Active:= False;
-//      DataModule2.MySQLqry.SQL.Clear;
-//      DataModule2.MySQLqry.SQL.Text :=  'SELECT * FROM PCADLiBparts JOIN PCADpart ON PCADLiBparts.PCADpart_idPCADpart=PCADpart.idPCADpart WHERE PCADpart.PCADpart = "'
-//       + PCAD.Cells[1,1] + ' AND PCADLiBparts.PCADLib_idPCADLib='+  DataModule2.PCADrec.idLib.ToString+'";';
-//      DataModule2.MySQLqry.Open;
-//
-//      if DataModule2.MySQLqry.RecordCount=0 then
-//      begin
-//
-//           **************** Начало нового блока PCADSymbols************
-//          SQLsel:= 'SELECT * FROM PCADSymbols WHERE Symbol = "' +  PCAD.Cells[1,2]+'";';
-//          SQLins := 'INSERT INTO PCADSymbols (Symbol)	Value ("'+ PCAD.Cells[1,2]+ '");';
-//          DataModule2.PCADrec.idSymb :=  DataModule2.InsertRec(SQLsel,SQLins,'idSymbols',True);
-//          **************** Конец нового блока************
-//
-//          **************** Начало нового блока PCADPattern************
-//          SQLsel:= 'SELECT * FROM PCADPattern WHERE PatternName = "' +  PCAD.Cells[1,3]+'";';
-//          SQLins := 'INSERT INTO PCADPattern (PatternName)	Value ("'+  PCAD.Cells[1,3]+'");';
-//          DataModule2.PCADrec.idPatern :=  DataModule2.InsertRec(SQLsel,SQLins,'idPattern',True);
-//          **************** Конец нового блока************
-//
-//          **************** Начало нового блока PCADpart************
-//          SQLsel:= 'SELECT * FROM PCADpart WHERE PCADSymbols_idSymbols = "' + DataModule2.PCADrec.idSymb.ToString + ' AND PCADPattern_idPattern='+
-//          DataModule2.PCADrec.idPatern.ToString+'";';
-//          SQLins := 'INSERT INTO PCADpart (PCADSymbols_idSymbols,PCADPattern_idPattern,PCADpart)	Value ("'+ DataModule2.PCADrec.idSymb.ToString +','
-//          +DataModule2.PCADrec.idPatern.ToString+','+PCAD.Cells[1,1]+'");';
-//          DataModule2.PCADrec.idPCADpart :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADpart',True);
-//          **************** Конец нового блока************
-//
-//             **************** Начало нового блока PCADLiBparts************
-//          SQLsel:= 'SELECT * FROM PCADLiBparts WHERE PCADpart_idPCADpart = "' + DataModule2.PCADrec.idPCADpart.ToString + ' AND PCADLib_idPCADLib='+
-//          DataModule2.PCADrec.idLib.ToString+'";';
-//          SQLins := 'INSERT INTO PCADLiBparts (PCADSymbols_idSymbols,PCADPattern_idPattern,PCADpart)	Value ("'+ DataModule2.PCADrec.idSymb.ToString +','
-//          +DataModule2.PCADrec.idPatern.ToString+','+PCAD.Cells[1,1]+'");';
-//          DataModule2.PCADrec.idPCADLiBparts :=  DataModule2.InsertRec(SQLsel,SQLins,'idPCADLiBparts',True);
+//          //**************** Начало нового блока LibRef************
+//          SQLsel:= 'SELECT * FROM LibRefs WHERE LibRef = "'+  Altium.Cells[1,3]+'" AND LibPaths_idLibPath='+DataModule2.Altiumrec.idLibPath.ToString+';';
+//          SQLins := 'INSERT INTO LibRefs (LibRef,LibPaths_idLibPath) Value ("'+Altium.Cells[1,3]+'",'+DataModule2.Altiumrec.idLibPath.ToString+');';
+//          DataModule2.Altiumrec.idLibRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibRef',False);
+//          //**************** Конец нового блока*************************
 //
 //
+//          //**************** Начало нового блока FootprPaths************
+//          SQLsel:= 'SELECT * FROM FootprPaths WHERE FootprPath = "' +  Altium.Cells[1,2]+'";';
+//          SQLins := 'INSERT INTO FootprPaths (FootprPath)	Value ("'+ Altium.Cells[1,2]+ '");';
+//          DataModule2.Altiumrec.idFootPath :=  DataModule2.InsertRec(SQLsel,SQLins,'idFootprPath',False);
+//          //**************** Конец нового блока*********************
 //
-//      end
-//      else
-//      begin
-//          DataModule2.PCADrec.idPCADLiBparts := DataModule2.MySQLqry.FieldByName('idPCADLiBparts').Value;
+//          //**************** Начало нового блока FootprRefs************
+//          SQLsel:= 'SELECT * FROM FootprRefs WHERE FootprRef = "' + Altium.Cells[1,1] + '" AND FootprPaths_idFootprPath='+
+//          DataModule2.Altiumrec.idFootPath.ToString+';';
+//          SQLins := 'INSERT INTO FootprRefs (FootprRef,FootprPaths_idFootprPath) Value ("'+ Altium.Cells[1,1]+'",'+DataModule2.Altiumrec.idFootPath.ToString+');';
+//          DataModule2.Altiumrec.idFootprRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idFootprRef',False);
+//          //**************** Конец нового блока***********************
 //
-//      end;
-//
-//        DataModule2.PCADrec.Status := True;
-//
+//          //**************** Начало нового блока PCADLiBparts************
+//          SQLsel:= 'SELECT * FROM AltiumParts WHERE LibRefs_idLibRef= ' + DataModule2.Altiumrec.idLibRef.ToString + ' AND FootprRefs_idFootprRef='+
+//          DataModule2.Altiumrec.idLibRef.ToString+' AND AltiumPart="'+Altium.Cells[1,1]+'";';
+//          SQLins := 'INSERT INTO AltiumParts (LibRefs_idLibRef,FootprRefs_idFootprRef,AltiumPart)	Value ('+ DataModule2.Altiumrec.idLibRef.ToString +','
+//          +DataModule2.Altiumrec.idFootprRef.ToString+',"'+Altium.Cells[1,1]+'");';
+//          DataModule2.Altiumrec.idComp :=  DataModule2.InsertRec(SQLsel,SQLins,'idAltiumPart',False);
+//          //**************** Конец нового блока***************************
+//          DataModule2.Altiumrec.Status := True;
 //
 //  end;
-                 { TODO : Атрибуты Altium }
-          //**************** Начало Атрибуты Altium***********
-          DataModule2.Altiumrec.Status := False;
 
-           if Altium.Cells[1,1].IsEmpty or Altium.Cells[1,2].IsEmpty or Altium.Cells[1,3].IsEmpty or Altium.Cells[1,4].IsEmpty then
-  begin
-         DataModule2.Altiumrec.Status := False;
-  end
-  else
-  begin
+                  if (DataModule2.PCADrec.idComp<1) and (DataModule2.Altiumrec.idComp<1) then
+         begin
+            SQLsel := 'SELECT * FROM CADkomponents WHERE AltiumParts_idAltiumPart IS NULL  AND PCADLiBparts_idPCADLiBparts = IS NULL;';
+            SQLins := 'INSERT INTO CADkomponents (AltiumParts_idAltiumPart,PCADLiBparts_idPCADLiBparts,PartNumber,Person_idPerson,CADkomponentDATE)	'+
+            'Value (NULL,NULL,"AltiumNOT_PCAdNOT",'+DataModule2.PartRec.idPerson.ToString+',NOW());';
+         end
+         else
+         begin
+                    if  DataModule2.Altiumrec.idComp<1 then
+           begin
+            SQLsel := 'SELECT * FROM CADkomponents WHERE AltiumParts_idAltiumPart IS NULL  AND PCADLiBparts_idPCADLiBparts = '+
+                  DataModule2.PCADrec.idComp.ToString+';';
+            SQLins := 'INSERT INTO CADkomponents (AltiumParts_idAltiumPart,PCADLiBparts_idPCADLiBparts,PartNumber,Person_idPerson,CADkomponentDATE) '+
+            'Value (NULL,'+DataModule2.PCADrec.idComp.ToString+',"AltiumNOT_'+PCAD.Cells[1,1]+'",'+DataModule2.PartRec.idPerson.ToString+',NOW());';
+           end
+           else
+           begin
+                    if DataModule2.PCADrec.idComp<1 then
+                begin
+                  SQLsel := 'SELECT * FROM CADkomponents WHERE AltiumParts_idAltiumPart = ' + DataModule2.Altiumrec.idComp.ToString +
+                         ' AND PCADLiBparts_idPCADLiBparts IS NULL;';
+                  SQLins := 'INSERT INTO CADkomponents (AltiumParts_idAltiumPart,PCADLiBparts_idPCADLiBparts,PartNumber,Person_idPerson,CADkomponentDATE) '+
+                  'Value ('+ DataModule2.Altiumrec.idComp.ToString +',NULL,"'+Altium.Cells[1,1]+'_PCAdNOT",'+DataModule2.PartRec.idPerson.ToString+',NOW());';
+                end
+                else
+                begin
+                  SQLsel := 'SELECT * FROM CADkomponents WHERE AltiumParts_idAltiumPart = ' + DataModule2.Altiumrec.idComp.ToString +
+                         ' AND PCADLiBparts_idPCADLiBparts = '+DataModule2.PCADrec.idComp.ToString+';';
+                  SQLins := 'INSERT INTO CADkomponents (AltiumParts_idAltiumPart,PCADLiBparts_idPCADLiBparts,PartNumber,Person_idPerson,CADkomponentDATE)'+
+                  ' Value ('+DataModule2.Altiumrec.idComp.ToString +','+DataModule2.Altiumrec.idFootprRef.ToString+',"'+Altium.Cells[1,1]+'_'+PCAD.Cells[1,1]+
+                  '",'+DataModule2.PartRec.idPerson.ToString+',NOW());';
 
-          //**************** Начало нового блока LibPaths************
-          SQLsel:= 'SELECT * FROM LibPaths WHERE LibPath = "' +  Altium.Cells[1,4]+'";';
-          SQLins := 'INSERT INTO PCADPattern (LibPath)	Value ("'+  Altium.Cells[1,4]+'");';
-          DataModule2.Altiumrec.idLibPath :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibPath',False);
-          //**************** Конец нового блока*************************
+                end;
 
-          //**************** Начало нового блока LibRef************
-          SQLsel:= 'SELECT * FROM LibRefs WHERE LibRef = "'+  Altium.Cells[1,3]+' AND LibPaths_idLibPath='+DataModule2.Altiumrec.idLibPath.ToString+'";';
-          SQLins := 'INSERT INTO LibRefs (LibRef,LibPaths_idLibPath) Value ("'+Altium.Cells[1,3]+'",'+DataModule2.Altiumrec.idLibPath.ToString+');';
-          DataModule2.Altiumrec.idLibRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idLibRef',False);
-          //**************** Конец нового блока*************************
+           end;
+
+         end;
 
 
-          //**************** Начало нового блока FootprPaths************
-          SQLsel:= 'SELECT * FROM FootprPaths WHERE FootprPath = "' +  Altium.Cells[1,2]+'";';
-          SQLins := 'INSERT INTO FootprPaths (FootprPath)	Value ("'+ Altium.Cells[1,2]+ '");';
-          DataModule2.Altiumrec.idFootPath :=  DataModule2.InsertRec(SQLsel,SQLins,'idFootprPath',False);
-          //**************** Конец нового блока*********************
-
-          //**************** Начало нового блока FootprRefs************
-          SQLsel:= 'SELECT * FROM FootprRefs WHERE FootprRef = "' + Altium.Cells[1,1] + ' AND FootprPaths_idFootprPath='+
-          DataModule2.Altiumrec.idFootPath.ToString+'";';
-          SQLins := 'INSERT INTO FootprRefs (FootprRef,FootprPaths_idFootprPath)	Value ("'+ Altium.Cells[1,1]+'",'+Altium.Cells[1,1]+'");';
-          DataModule2.Altiumrec.idFootprRef :=  DataModule2.InsertRec(SQLsel,SQLins,'idFootprRef',False);
-          //**************** Конец нового блока***********************
-
-          //**************** Начало нового блока PCADLiBparts************
-          SQLsel:= 'SELECT * FROM AltiumParts WHERE LibRefs_idLibRef= ' + DataModule2.Altiumrec.idLibRef.ToString + ' AND FootprRefs_idFootprRef='+
-          DataModule2.Altiumrec.idLibRef.ToString+' AND AltiumPart="'+Altium.Cells[1,1]+'";';
-          SQLins := 'INSERT INTO AltiumParts (LibRefs_idLibRef,FootprRefs_idFootprRef,AltiumPart)	Value ('+ DataModule2.PCADrec.idSymb.ToString +','
-          +DataModule2.Altiumrec.idFootprRef.ToString+',"'+Altium.Cells[1,1]+'");';
-          DataModule2.Altiumrec.idComp :=  DataModule2.InsertRec(SQLsel,SQLins,'idAltiumPart',False);
+          DataModule2.PartRec.idCADkomponents := DataModule2.InsertRec(SQLsel,SQLins,'idCADkomponents',False);
           //**************** Конец нового блока***************************
-          DataModule2.Altiumrec.Status := True;
 
-  end;
-
-            Result:=DataModule2.PCADrec.idSymb;
 end;
 
     end.

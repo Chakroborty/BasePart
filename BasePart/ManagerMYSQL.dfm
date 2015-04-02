@@ -76,7 +76,7 @@ object Form3: TForm3
   end
   object BitBtn7: TBitBtn
     Left = 503
-    Top = 800
+    Top = 802
     Width = 50
     Height = 20
     Caption = #1043#1086#1090#1086#1074#1086
@@ -1698,29 +1698,34 @@ object Form3: TForm3
         Font.Style = []
         ParentFont = False
       end
-      object chklst1: TCheckListBox
+      object SpisokTree2: TVirtualStringTree
         Left = 3
         Top = 25
-        Width = 366
-        Height = 240
-        OnClickCheck = chklst1ClickCheck
-        ItemHeight = 13
-        TabOrder = 0
-      end
-      object SpisokTree2: TVirtualStringTree
-        Left = 424
-        Top = 25
-        Width = 305
-        Height = 240
+        Width = 406
+        Height = 304
+        CheckImageKind = ckXP
         Header.AutoSizeIndex = 0
         Header.Font.Charset = DEFAULT_CHARSET
         Header.Font.Color = clWindowText
         Header.Font.Height = -11
         Header.Font.Name = 'Tahoma'
         Header.Font.Style = []
-        Header.MainColumn = -1
-        TabOrder = 1
-        Columns = <>
+        Header.Options = [hoColumnResize, hoDrag, hoShowSortGlyphs, hoVisible]
+        TabOrder = 0
+        OnGetText = SpisokTree2GetText
+        OnInitNode = SpisokTree2InitNode
+        OnNodeClick = SpisokTree2NodeClick
+        Columns = <
+          item
+            Position = 0
+            Width = 60
+            WideText = #1042#1093#1086#1076#1080#1090
+          end
+          item
+            Position = 1
+            Width = 300
+            WideText = #1055#1077#1088#1077#1095#1077#1085#1100
+          end>
       end
     end
     object advtbsht8: TAdvTabSheet
@@ -1731,8 +1736,8 @@ object Form3: TForm3
       TabColor = clBtnFace
       TabColorTo = clNone
       object chk1: TCheckBox
-        Left = 64
-        Top = 256
+        Left = 16
+        Top = 32
         Width = 161
         Height = 17
         Caption = #1055#1088#1077#1076#1072#1090#1100' '#1076#1072#1085#1085#1099#1077' '#1074' '#1087#1088#1086#1077#1082#1090
@@ -1819,6 +1824,10 @@ object Form3: TForm3
         Caption = 'ImBase'
         OnClick = ImBase3Click
       end
+    end
+    object N5: TMenuItem
+      Caption = #1087#1088#1086#1073#1072' '
+      OnClick = N5Click
     end
   end
   object MySQLds: TDataSource

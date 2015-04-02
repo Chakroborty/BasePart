@@ -177,7 +177,6 @@ CREATE UNIQUE INDEX `EdiniciName_UNIQUE` ON `ERIparameters`.`Edinici` (`EdiniciN
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADLib` (
   `idPCADLib` INT NOT NULL AUTO_INCREMENT,
   `PCADLibName` VARCHAR(100) NULL,
-  `PCADpart_idPCADpart` INT NOT NULL,
   PRIMARY KEY (`idPCADLib`))
 ENGINE = InnoDB;
 
@@ -204,7 +203,7 @@ CREATE UNIQUE INDEX `PatternName_UNIQUE` ON `ERIparameters`.`IPCPattern` (`Patte
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADPattern` (
   `idPattern` INT NOT NULL AUTO_INCREMENT,
-  `IPCPattern_idIPCPattern` INT NOT NULL,
+  `IPCPattern_idIPCPattern` INT NULL,
   `PatternName` VARCHAR(254) NULL,
   `Pattern3D` BLOB NULL,
   `PCADLib_idPCADLib` INT NOT NULL,
@@ -222,8 +221,6 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADPattern` (
 ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `idPattern_UNIQUE` ON `ERIparameters`.`PCADPattern` (`idPattern` ASC);
-
-CREATE UNIQUE INDEX `PatternName_UNIQUE` ON `ERIparameters`.`PCADPattern` (`PatternName` ASC);
 
 CREATE INDEX `fk_Pattern_IPCPattern1_idx` ON `ERIparameters`.`PCADPattern` (`IPCPattern_idIPCPattern` ASC);
 
@@ -257,9 +254,9 @@ CREATE INDEX `fk_PCADSymbols_PCADLib1_idx` ON `ERIparameters`.`PCADSymbols` (`PC
 -- Table `ERIparameters`.`PCADLiBparts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PCADLiBparts` (
-  `idPCADLiBparts` INT NOT NULL,
+  `idPCADLiBparts` INT NOT NULL AUTO_INCREMENT,
   `PCADLib_idPCADLib` INT NOT NULL,
-  `PCADLiBpartName` VARCHAR(100) NULL,
+  `PCADLiBpartName` VARCHAR(252) NULL,
   `PCADPattern_idPattern` INT NOT NULL,
   `PCADSymbols_idSymbols` INT NOT NULL,
   PRIMARY KEY (`idPCADLiBparts`),
@@ -286,15 +283,19 @@ CREATE INDEX `fk_PCADLiBparts_PCADPattern1_idx` ON `ERIparameters`.`PCADLiBparts
 
 CREATE INDEX `fk_PCADLiBparts_PCADSymbols1_idx` ON `ERIparameters`.`PCADLiBparts` (`PCADSymbols_idSymbols` ASC);
 
+CREATE UNIQUE INDEX `idPCADLiBparts_UNIQUE` ON `ERIparameters`.`PCADLiBparts` (`idPCADLiBparts` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `ERIparameters`.`LibPaths`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`LibPaths` (
-  `idLibPath` INT NOT NULL,
+  `idLibPath` INT NOT NULL AUTO_INCREMENT,
   `LibPath` VARCHAR(256) NULL,
   PRIMARY KEY (`idLibPath`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idLibPath_UNIQUE` ON `ERIparameters`.`LibPaths` (`idLibPath` ASC);
 
 
 -- -----------------------------------------------------
@@ -321,10 +322,12 @@ CREATE INDEX `fk_LibRefs_LibPaths1_idx` ON `ERIparameters`.`LibRefs` (`LibPaths_
 -- Table `ERIparameters`.`FootprPaths`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`FootprPaths` (
-  `idFootprPath` INT NOT NULL,
+  `idFootprPath` INT NOT NULL AUTO_INCREMENT,
   `FootprPath` VARCHAR(256) NULL,
   PRIMARY KEY (`idFootprPath`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idFootprPath_UNIQUE` ON `ERIparameters`.`FootprPaths` (`idFootprPath` ASC);
 
 
 -- -----------------------------------------------------
@@ -484,11 +487,12 @@ CREATE INDEX `fk_Person_UserStatus1_idx` ON `ERIparameters`.`Person` (`UserStatu
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`CADkomponents` (
   `idCADkomponents` INT NOT NULL AUTO_INCREMENT,
-  `Pic3D_idPic3D` INT NULL,
-  `PCADLiBparts_idPCADLiBparts` INT NULL,
-  `AltiumParts_idAltiumPart` INT NOT NULL,
+  `Pic3D_idPic3D` INT NULL DEFAULT NULL,
+  `PCADLiBparts_idPCADLiBparts` INT NULL DEFAULT NULL,
+  `AltiumParts_idAltiumPart` INT NULL DEFAULT NULL,
   `Person_idPerson` INT NOT NULL,
-  `Part Number` VARCHAR(100) NULL,
+  `PartNumber` VARCHAR(252) NOT NULL,
+  `CADkomponentDATE` DATETIME NOT NULL,
   PRIMARY KEY (`idCADkomponents`),
   CONSTRAINT `fk_CADkomponents_Pic3D1`
     FOREIGN KEY (`Pic3D_idPic3D`)
@@ -575,6 +579,7 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`Parts` (
   `PartSubTipe_idPartSubTipe` INT NULL,
   `TIP_REA_idTIP_REA` INT NULL,
   `OblPrimenenia_idOblPrimenenia` INT NULL,
+  `Firms_idFirmsI` INT NULL,
   `Firms_idFirms` INT NULL,
   `Patents_idPatents` INT NULL,
   `Strani_idStranaRazrab` INT NULL,
@@ -888,6 +893,7 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartSpisok` (
   `idPartsSpisok` INT NOT NULL AUTO_INCREMENT,
   `Parts_idParts` INT NOT NULL,
   `SpiskiRazr_idSpickiRazr` INT NOT NULL,
+  `PartSubType_idPartSubTipe` INT NOT NULL,
   PRIMARY KEY (`idPartsSpisok`),
   CONSTRAINT `fk_PartsSpisok_Parts1`
     FOREIGN KEY (`Parts_idParts`)
@@ -898,6 +904,11 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartSpisok` (
     FOREIGN KEY (`SpiskiRazr_idSpickiRazr`)
     REFERENCES `ERIparameters`.`SpiskiRazr` (`idSpickiRazr`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PartSpisok_PartSubType1`
+    FOREIGN KEY (`PartSubType_idPartSubTipe`)
+    REFERENCES `ERIparameters`.`PartSubType` (`idPartSubTipe`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -906,6 +917,8 @@ CREATE UNIQUE INDEX `idPartsSpisok_UNIQUE` ON `ERIparameters`.`PartSpisok` (`idP
 CREATE INDEX `fk_PartsSpisok_Parts1_idx` ON `ERIparameters`.`PartSpisok` (`Parts_idParts` ASC);
 
 CREATE INDEX `fk_PartsSpisok_SpiskiRazr1_idx` ON `ERIparameters`.`PartSpisok` (`SpiskiRazr_idSpickiRazr` ASC);
+
+CREATE INDEX `fk_PartSpisok_PartSubType1_idx` ON `ERIparameters`.`PartSpisok` (`PartSubType_idPartSubTipe` ASC);
 
 
 -- -----------------------------------------------------
@@ -984,125 +997,58 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ERIparameters`.`poNTD`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ERIparameters`.`poNTD` (
-  `idpoNTD` INT NOT NULL AUTO_INCREMENT,
-  `CARDS_idCARDS` INT NOT NULL,
-  `poNTDcol` DECIMAL NULL,
-  `poNTDcol1` DECIMAL NULL,
-  `poNTDcol2` DECIMAL NULL,
-  `poNTDcol3` DECIMAL NULL,
-  `poNTDcol4` DECIMAL NULL,
-  `poNTDcol5` DECIMAL NULL,
-  `poNTDcol6` DECIMAL NULL,
-  `poNTDcol7` DECIMAL NULL,
-  `poNTDcol8` DECIMAL NULL,
-  `poNTDcol9` DECIMAL NULL,
-  `poNTDcol10` DECIMAL NULL,
-  `poNTDcol11` DECIMAL NULL,
-  `poNTDcol12` DECIMAL NULL,
-  `poNTDcol13` DECIMAL NULL,
-  `poNTDcol14` DECIMAL NULL,
-  `poNTDcol15` DECIMAL NULL,
-  `poNTDcol16` DECIMAL NULL,
-  `poNTDcol17` DECIMAL NULL,
-  `poNTDcol18` DECIMAL NULL,
-  `poNTDcol19` DECIMAL NULL,
-  `poNTDcol20` DECIMAL NULL,
-  `poNTDcol21` DECIMAL NULL,
-  `poNTDcol22` DECIMAL NULL,
-  `poNTDcol23` DECIMAL NULL,
-  `poNTDcol24` DECIMAL NULL,
-  `poNTDcol25` DECIMAL NULL,
-  `poNTDcol26` DECIMAL NULL,
-  `poNTDcol27` DECIMAL NULL,
-  `poNTDcol28` DECIMAL NULL,
-  `poNTDcol29` DECIMAL NULL,
-  `poNTDcol30` DECIMAL NULL,
-  `Time` DATETIME NULL,
-  `Person_idPerson` INT NOT NULL,
-  PRIMARY KEY (`idpoNTD`),
-  CONSTRAINT `fk_poNTD_CARDS1`
-    FOREIGN KEY (`CARDS_idCARDS`)
-    REFERENCES `ERIparameters`.`CARTS` (`idCARDS`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_poNTD_Person1`
-    FOREIGN KEY (`Person_idPerson`)
-    REFERENCES `ERIparameters`.`Person` (`idPerson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_poNTD_CARDS1_idx` ON `ERIparameters`.`poNTD` (`CARDS_idCARDS` ASC);
-
-CREATE INDEX `fk_poNTD_Person1_idx` ON `ERIparameters`.`poNTD` (`Person_idPerson` ASC);
-
-
--- -----------------------------------------------------
 -- Table `ERIparameters`.`vSHEME`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`vSHEME` (
   `idpoNTD` INT NOT NULL,
   `CARDS_idCARDS` INT NOT NULL,
-  `IspolnUST_idIspolnUST` INT NOT NULL,
-  `poNTDcol` DECIMAL NULL,
-  `poNTDcol1` DECIMAL NULL,
-  `poNTDcol2` DECIMAL NULL,
-  `poNTDcol3` DECIMAL NULL,
-  `poNTDcol4` DECIMAL NULL,
-  `poNTDcol5` DECIMAL NULL,
-  `poNTDcol6` DECIMAL NULL,
-  `poNTDcol7` DECIMAL NULL,
-  `poNTDcol8` DECIMAL NULL,
-  `poNTDcol9` DECIMAL NULL,
-  `poNTDcol10` DECIMAL NULL,
-  `poNTDcol11` DECIMAL NULL,
-  `poNTDcol12` DECIMAL NULL,
-  `poNTDcol13` DECIMAL NULL,
-  `poNTDcol14` DECIMAL NULL,
-  `poNTDcol15` DECIMAL NULL,
-  `poNTDcol16` DECIMAL NULL,
-  `poNTDcol17` DECIMAL NULL,
-  `poNTDcol18` DECIMAL NULL,
-  `poNTDcol19` DECIMAL NULL,
-  `poNTDcol20` DECIMAL NULL,
-  `poNTDcol21` DECIMAL NULL,
-  `poNTDcol22` DECIMAL NULL,
-  `poNTDcol23` DECIMAL NULL,
-  `poNTDcol24` DECIMAL NULL,
-  `poNTDcol25` DECIMAL NULL,
-  `poNTDcol26` DECIMAL NULL,
-  `poNTDcol27` DECIMAL NULL,
-  `poNTDcol28` DECIMAL NULL,
-  `poNTDcol29` DECIMAL NULL,
-  `poNTDcol30` DECIMAL NULL,
   `Person_idPerson` INT NOT NULL,
   `Time` DATETIME NULL,
+  `vSHEME` VARCHAR(45) NULL,
+  `vSHEME1` VARCHAR(45) NULL,
+  `vSHEME2` VARCHAR(45) NULL,
+  `vSHEME3` VARCHAR(45) NULL,
+  `vSHEME4` VARCHAR(45) NULL,
+  `vSHEME5` VARCHAR(45) NULL,
+  `vSHEME6` VARCHAR(45) NULL,
+  `vSHEME7` VARCHAR(45) NULL,
+  `vSHEME8` VARCHAR(45) NULL,
+  `vSHEME9` VARCHAR(45) NULL,
+  `vSHEME10` VARCHAR(45) NULL,
+  `vSHEME11` VARCHAR(45) NULL,
+  `vSHEME12` VARCHAR(45) NULL,
+  `Parts_idParts` INT NOT NULL,
+  `PartSubType_idPartSubTipe` INT NOT NULL,
   PRIMARY KEY (`idpoNTD`),
   CONSTRAINT `fk_poNTD_CARDS10`
     FOREIGN KEY (`CARDS_idCARDS`)
     REFERENCES `ERIparameters`.`CARTS` (`idCARDS`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vSHEME_IspolnUST1`
-    FOREIGN KEY (`IspolnUST_idIspolnUST`)
-    REFERENCES `ERIparameters`.`IspolnUST` (`idIspolnUST`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_vSHEME_Person1`
     FOREIGN KEY (`Person_idPerson`)
     REFERENCES `ERIparameters`.`Person` (`idPerson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vSHEME_Parts1`
+    FOREIGN KEY (`Parts_idParts`)
+    REFERENCES `ERIparameters`.`Parts` (`idParts`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vSHEME_PartSubType1`
+    FOREIGN KEY (`PartSubType_idPartSubTipe`)
+    REFERENCES `ERIparameters`.`PartSubType` (`idPartSubTipe`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_poNTD_CARDS1_idx` ON `ERIparameters`.`vSHEME` (`CARDS_idCARDS` ASC);
 
-CREATE INDEX `fk_vSHEME_IspolnUST1_idx` ON `ERIparameters`.`vSHEME` (`IspolnUST_idIspolnUST` ASC);
-
 CREATE INDEX `fk_vSHEME_Person1_idx` ON `ERIparameters`.`vSHEME` (`Person_idPerson` ASC);
+
+CREATE INDEX `fk_vSHEME_Parts1_idx` ON `ERIparameters`.`vSHEME` (`Parts_idParts` ASC);
+
+CREATE INDEX `fk_vSHEME_PartSubType1_idx` ON `ERIparameters`.`vSHEME` (`PartSubType_idPartSubTipe` ASC);
 
 
 -- -----------------------------------------------------
@@ -1328,22 +1274,48 @@ CREATE INDEX `fk_PartsTAO_TAO1_idx` ON `ERIparameters`.`PartsTAO` (`TAO_idTAO` A
 -- Table `ERIparameters`.`PartPoNTD`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartPoNTD` (
-  `idPatPoNTD` INT NOT NULL AUTO_INCREMENT,
+  `idPartPoNTD` INT NOT NULL AUTO_INCREMENT,
   `Parts_idParts` INT NOT NULL,
-  `poNTD_idpoNTD` INT NOT NULL,
+  `CARTS_idCARDS` INT NOT NULL,
   `PartSubType_idPartSubTipe` INT NOT NULL,
   `Person_idPerson` INT NOT NULL,
-  `PatPoNTDcol` VARCHAR(100) NULL,
+  `PartPoNTD` VARCHAR(512) NULL,
   `PartPoNTDDTAME` DATETIME NULL,
-  PRIMARY KEY (`idPatPoNTD`),
+  `poNTDcol` DECIMAL NULL,
+  `poNTDcol1` DECIMAL NULL,
+  `poNTDcol2` DECIMAL NULL,
+  `poNTDcol3` DECIMAL NULL,
+  `poNTDcol4` DECIMAL NULL,
+  `poNTDcol5` DECIMAL NULL,
+  `poNTDcol6` DECIMAL NULL,
+  `poNTDcol7` DECIMAL NULL,
+  `poNTDcol8` DECIMAL NULL,
+  `poNTDcol9` DECIMAL NULL,
+  `poNTDcol10` DECIMAL NULL,
+  `poNTDcol11` DECIMAL NULL,
+  `poNTDcol12` DECIMAL NULL,
+  `poNTDcol13` DECIMAL NULL,
+  `poNTDcol14` DECIMAL NULL,
+  `poNTDcol15` DECIMAL NULL,
+  `poNTDcol16` DECIMAL NULL,
+  `poNTDcol17` DECIMAL NULL,
+  `poNTDcol18` DECIMAL NULL,
+  `poNTDcol19` DECIMAL NULL,
+  `poNTDcol20` DECIMAL NULL,
+  `poNTDcol21` DECIMAL NULL,
+  `poNTDcol22` DECIMAL NULL,
+  `poNTDcol23` DECIMAL NULL,
+  `poNTDcol24` DECIMAL NULL,
+  `poNTDcol25` DECIMAL NULL,
+  `poNTDcol26` DECIMAL NULL,
+  `poNTDcol27` DECIMAL NULL,
+  `poNTDcol28` DECIMAL NULL,
+  `poNTDcol29` DECIMAL NULL,
+  `poNTDcol30` DECIMAL NULL,
+  PRIMARY KEY (`idPartPoNTD`),
   CONSTRAINT `fk_PatPoNTD_Parts1`
     FOREIGN KEY (`Parts_idParts`)
     REFERENCES `ERIparameters`.`Parts` (`idParts`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_PatPoNTD_poNTD1`
-    FOREIGN KEY (`poNTD_idpoNTD`)
-    REFERENCES `ERIparameters`.`poNTD` (`idpoNTD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PartPoNTD_PartSubType1`
@@ -1355,18 +1327,23 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartPoNTD` (
     FOREIGN KEY (`Person_idPerson`)
     REFERENCES `ERIparameters`.`Person` (`idPerson`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PartPoNTD_CARTS1`
+    FOREIGN KEY (`CARTS_idCARDS`)
+    REFERENCES `ERIparameters`.`CARTS` (`idCARDS`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `idPatPoNTD_UNIQUE` ON `ERIparameters`.`PartPoNTD` (`idPatPoNTD` ASC);
+CREATE UNIQUE INDEX `idPatPoNTD_UNIQUE` ON `ERIparameters`.`PartPoNTD` (`idPartPoNTD` ASC);
 
 CREATE INDEX `fk_PatPoNTD_Parts1_idx` ON `ERIparameters`.`PartPoNTD` (`Parts_idParts` ASC);
-
-CREATE INDEX `fk_PatPoNTD_poNTD1_idx` ON `ERIparameters`.`PartPoNTD` (`poNTD_idpoNTD` ASC);
 
 CREATE INDEX `fk_PartPoNTD_PartSubType1_idx` ON `ERIparameters`.`PartPoNTD` (`PartSubType_idPartSubTipe` ASC);
 
 CREATE INDEX `fk_PartPoNTD_Person1_idx` ON `ERIparameters`.`PartPoNTD` (`Person_idPerson` ASC);
+
+CREATE INDEX `fk_PartPoNTD_CARTS1_idx` ON `ERIparameters`.`PartPoNTD` (`CARTS_idCARDS` ASC);
 
 
 -- -----------------------------------------------------
@@ -1374,17 +1351,12 @@ CREATE INDEX `fk_PartPoNTD_Person1_idx` ON `ERIparameters`.`PartPoNTD` (`Person_
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartVsheme` (
   `idPatVsheme` INT NOT NULL AUTO_INCREMENT,
-  `Parts_idParts` INT NOT NULL,
   `vSHEME_idpoNTD` INT NOT NULL,
   `Person_idPerson` INT NOT NULL,
+  `IspolnUST_idIspolnUST` INT NOT NULL,
   `PatVshemecol` VARCHAR(100) NULL,
   `Time` DATETIME NULL,
   PRIMARY KEY (`idPatVsheme`),
-  CONSTRAINT `fk_PatPoNTD_Parts10`
-    FOREIGN KEY (`Parts_idParts`)
-    REFERENCES `ERIparameters`.`Parts` (`idParts`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_PatVsheme_vSHEME1`
     FOREIGN KEY (`vSHEME_idpoNTD`)
     REFERENCES `ERIparameters`.`vSHEME` (`idpoNTD`)
@@ -1394,16 +1366,21 @@ CREATE TABLE IF NOT EXISTS `ERIparameters`.`PartVsheme` (
     FOREIGN KEY (`Person_idPerson`)
     REFERENCES `ERIparameters`.`Person` (`idPerson`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PartVsheme_IspolnUST1`
+    FOREIGN KEY (`IspolnUST_idIspolnUST`)
+    REFERENCES `ERIparameters`.`IspolnUST` (`idIspolnUST`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `idPatPoNTD_UNIQUE` ON `ERIparameters`.`PartVsheme` (`idPatVsheme` ASC);
 
-CREATE INDEX `fk_PatPoNTD_Parts1_idx` ON `ERIparameters`.`PartVsheme` (`Parts_idParts` ASC);
-
 CREATE INDEX `fk_PatVsheme_vSHEME1_idx` ON `ERIparameters`.`PartVsheme` (`vSHEME_idpoNTD` ASC);
 
 CREATE INDEX `fk_PatVsheme_Person1_idx` ON `ERIparameters`.`PartVsheme` (`Person_idPerson` ASC);
+
+CREATE INDEX `fk_PartVsheme_IspolnUST1_idx` ON `ERIparameters`.`PartVsheme` (`IspolnUST_idIspolnUST` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

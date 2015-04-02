@@ -28,11 +28,12 @@ INSERT INTO partsubtype (PartType_idPartType,SubTipe,SubTipe1,SubTipe2,SubTipe3,
 									Value (1,"SMD","Постоянный","Р1-12","0,1","Резистор",1);
 INSERT INTO partsubtype (PartType_idPartType,SubTipe,SubTipe1,SubTipe2,SubTipe3,Klass,ObshNTD)
 									Value (1,"SMD","Переменный","СП5-19","0,1","Резистор",1);
-INSERT INTO PartPoNTD (PartType_idPartType,poNTD_idpoNTD,PartSubType_idPartSubTipe,Person_idPerson)
-									Value (3,1,1,1);
+INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,Person_idPerson)
+									Value (3,1,66,1);
 
 
 DELETE FROM  partsubtype WHERE idPartSubTipe = 3;
+DELETE FROM  librefs WHERE idLibRef = 2;
 DELETE FROM firms WHERE idFirms = 3;
 DELETE FROM parts WHERE idParts = 1;
 DELETE FROM datashets WHERE idDatashets = 3;
@@ -65,8 +66,12 @@ ALTER TABLE parts MODIFY PartsData_idPartsData INT;
 ALTER TABLE partsdata ADD  PartsData_idPartsData INTEGER;
 
 ALTER TABLE userstatus ADD StaNum INTEGER;
+ALTER TABLE pcadlib DROP COLUMN PCADpart_idPCADpart;
+
 UPDATE partsubtype SET Pic3D_idPic3D = 1  WHERE idPartSubTipe = 4;
 UPDATE userstatus SET StaNum = 0  WHERE idUserStatus = 1;
 SELECT * FROM pontd;
 SELECT * FROM partpontd;
 SELECT * FROM pcadlib;
+SELECT * FROM librefs;                                                                  
+INSERT INTO PartPoNTD (Parts_idParts,PartSubType_idPartSubTipe,CARTS_idCARDS,PartPoNTD,Person_idPerson,PartPoNTDDTAME) Value (1,1,66,"",1,NOW()); 
