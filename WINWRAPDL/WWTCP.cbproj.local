@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022.06.24 18:14:29.414,=C:\Users\bikadorov\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022.06.24 18:14:29.430,=C:\Users\bikadorov\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
+    <Transaction>2022.06.24 18:15:25.855,D:\Docum\Progekts\EMBARCADERO\WINWRAPDL\WWRAPDLL.cpp=C:\Users\bikadorov\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
+    <Transaction>2022.06.24 18:15:36.249,D:\Docum\Progekts\EMBARCADERO\WINWRAPDL\WWDLL.h=C:\Users\bikadorov\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022.06.24 18:15:55.880,D:\Docum\Progekts\EMBARCADERO\WINWRAPDL\WWTCP.cbproj=C:\Users\bikadorov\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
